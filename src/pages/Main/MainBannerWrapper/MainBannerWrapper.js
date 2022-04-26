@@ -12,9 +12,6 @@ const MainBannerWrapper = () => (
     <div className="mainBannerContent">
       <MainContext />
     </div>
-    <a className="mainHyperLink" href="/">
-      Pösea
-    </a>
   </section>
 );
 

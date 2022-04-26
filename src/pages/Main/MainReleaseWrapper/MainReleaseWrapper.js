@@ -2,7 +2,7 @@ import React from 'react';
 import './MainReleaseWrapper.scss';
 import MainContext from '../MainContext/MainContext';
 
-const MainReleaseWrapper = props => (
+const MainReleaseWrapper = () => (
   <section className="mainReleaseWrapper">
     <div className="mainRelease">
       <div className="mainReleaseImgBox">
