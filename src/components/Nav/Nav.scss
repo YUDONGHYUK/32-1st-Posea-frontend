@@ -1,0 +1,80 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+.gnbItemBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  transition: top 0.2s ease-in-out, background-color 500ms ease-in;
+
+  &.skinCare {
+    background-color: $navSkin;
+  }
+
+  &.bodyHand {
+    background-color: $navBody;
+  }
+}
+
+.gnb {
+  @include flexbox(space-between);
+
+  color: $primary;
+
+  .mainTitle,
+  .menuTitle {
+    position: absolute;
+    top: 170px;
+    left: 40px;
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+  .menuTitle {
+    z-index: 10;
+  }
+
+  .gnbList {
+    @include flexbox(flex-start, flex-start);
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0 40px;
+    background-color: $primary;
+    z-index: 20;
+    transition: top 100ms ease-in;
+
+    &.navClose {
+      top: -80px;
+    }
+
+    &.isOpen {
+      background-color: $background;
+      border-bottom: 1px solid $border;
+
+      .gnbItemTitle {
+        color: $primary;
+      }
+    }
+  }
+
+  .gnbItem {
+    display: flex;
+    margin-right: 16px;
+
+    .gnbItemTitle {
+      height: 80px;
+      font-size: 14px;
+      color: $background;
+    }
+  }
+}
