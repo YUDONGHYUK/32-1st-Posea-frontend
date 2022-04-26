@@ -5,6 +5,10 @@
   color: white;
 }
 
+.mainBannerInnerWrapper.black {
+  color: black;
+}
+
 .InnerWrapperHeader {
   margin-bottom: 20px;
   font-weight: 100;
@@ -31,6 +35,16 @@
   height: 60px;
   padding: 0 23px;
   border: 1px solid white;
+
+  &.black {
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      transition: all 250ms ease-in;
+    }
+  }
 
   &:hover {
     background-color: white;

@@ -1,8 +1,8 @@
 import React from 'react';
 import './MainContext.scss';
 
-const MainContext = props => (
-  <div className="mainBannerInnerWrapper">
+const MainContext = ({ color }) => (
+  <div className={`mainBannerInnerWrapper ${color}`}>
     <span className="InnerWrapperHeader text1">
       호기심으로 물든 일곱 가지 아로마
     </span>
@@ -12,7 +12,7 @@ const MainContext = props => (
       관행을 따르지 않는 미묘한 차이의 접근법으로 만들어집니다.
     </p>
     <a href="/">
-      <div className="InnerLinkWrapper">
+      <div className={`InnerLinkWrapper ${color}`}>
         <span>향수 보기</span>
         <i className="fa-solid fa-arrow-right" />
       </div>
