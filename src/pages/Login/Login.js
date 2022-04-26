@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Signup from './Signup/Signup';
 import './Login.scss';
 
+const originalTitle = {
+  title: '안녕하세요',
+  paragraph: '로그인 및 회원가입을 위한 이메일 주소를 입력 부탁드립니다.',
+  inputs: [],
+  buttonContent: '계속',
+};
+
 const Login = () => {
   const resObj = {
     'invalid email': ['password', 'passwordCheck', 'lastName', 'firstName'],
     SUCCESS: ['email', 'password'],
   };
 
-  const [modalTitle, setModalTitle] = useState({
-    title: '안녕하세요',
-    paragraph: '로그인 및 회원가입을 위한 이메일 주소를 입력 부탁드립니다.',
-    inputs: [],
-    buttonContent: '계속',
-  });
+  const [modalTitle, setModalTitle] = useState(originalTitle);
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -58,7 +60,10 @@ const Login = () => {
   // useEffect(() => {}, [condition]);
 
   const onBackBtnClick = () => {
+    console.log('뒤로');
+    // ...modalTitle
     setCondition(false);
+    setModalTitle(originalTitle);
   };
 
   //패치 받았을 때 N 받으면 signup으로 넘어가기
