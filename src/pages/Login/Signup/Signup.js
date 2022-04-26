@@ -1,9 +1,12 @@
 import React from 'react';
 import './Signup.scss';
 
-const Signup = ({ onChange, modalTitle }) => {
+const Signup = ({ onChange, onBackBtnClick }) => {
   return (
     <>
+      <button className="backBtn" onClick={onBackBtnClick}>
+        back
+      </button>
       <input
         className="modalInput inputPassword"
         placeholder="패스워드"
@@ -58,8 +61,6 @@ const Signup = ({ onChange, modalTitle }) => {
           이용 약관에 동의합니다.
         </label>
       </div>
-      <button className="loginBtn">{modalTitle.buttonContent}</button>
-      <button className="isUsers">이솝 계정을 가지고 계십니까?</button>
     </>
   );
 };

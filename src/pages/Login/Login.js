@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Signup from './Signup/Signup';
 import './Login.scss';
 
@@ -26,6 +26,7 @@ const Login = () => {
   });
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [condition, setCondition] = useState(false);
 
   const modalClose = () => {
     setModalOpen(!modalOpen);
@@ -41,6 +42,25 @@ const Login = () => {
     });
   };
 
+  const goTosignup = e => {
+    e.preventDefault();
+    setCondition(true);
+    setModalTitle(prev => {
+      return {
+        ...prev,
+        ['buttonContent']: '가입',
+        ['title']: '푀세아에 오신 것을 환영합니다.',
+        ['paragraph']: '회원가입을 위해 아래 세부 정보를 작성해주세요.',
+      };
+    });
+  };
+
+  // useEffect(() => {}, [condition]);
+
+  const onBackBtnClick = () => {
+    setCondition(false);
+  };
+
   //패치 받았을 때 N 받으면 signup으로 넘어가기
   if ('response'.message === 'Invalid email') {
     setModalTitle({
@@ -52,13 +72,8 @@ const Login = () => {
 
   return (
     <div className="modalOverlay">
-      <div className="modalBody">
-        <button
-          className="modalExit"
-          type="button"
-          // value="close"
-          onClick={modalClose}
-        >
+      <form className="modalBody" onSubmit={goTosignup}>
+        <button className="modalExit" type="button" onClick={modalClose}>
           X
         </button>
         <div className="modalBox">
@@ -73,11 +88,12 @@ const Login = () => {
             name="email"
             onChange={onChange}
           />
-          <Signup onChange={onChange} title={modalTitle} />
+          {condition && (
+            <Signup onBackBtnClick={onBackBtnClick} onChange={onChange} />
+          )}
           <button className="loginBtn">{modalTitle.buttonContent}</button>
-          <button className="isUsers">이솝 계정을 가지고 계십니까?</button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
