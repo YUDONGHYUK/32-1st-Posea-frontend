@@ -1,0 +1,180 @@
+.page {
+  padding-top: 80px;
+  background-color: #f0efe0;
+
+  //info : 제품 사진 + 설명 + 카트추카버튼
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 120px;
+
+    .infoImgLeft {
+      width: 440px;
+      height: 447px;
+    }
+
+    .infoDetails {
+      width: 440px;
+      height: 447px;
+
+      .infoImgRight {
+        width: 440px;
+        height: 447px;
+      }
+
+      #explain {
+        width: 350px;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+
+    .infoRight {
+      display: flex;
+      flex-direction: column;
+      align-items: space-evenly;
+      width: 360px;
+      .title {
+        margin: 5px;
+      }
+    }
+
+    .infoHeader {
+      margin-bottom: 20px;
+      .title {
+        margin: 5px;
+      }
+    }
+    .infoName {
+      margin-bottom: 20px;
+      font-size: 30px;
+      .title {
+        margin: 5px;
+      }
+    }
+
+    .infoType {
+      margin: 10xp 0px;
+      .title {
+        margin: 5px 0px;
+      }
+    }
+
+    .btn {
+      width: 360px;
+      height: 60px;
+      margin: 20px 0px;
+      background-color: #333;
+      color: whitesmoke;
+    }
+  }
+
+  //aside:  포장,서비스 안내
+
+  .asideList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 100px 100px;
+    width: 100%;
+
+    .asideLeft {
+      display: flex;
+      flex-direction: column;
+      width: 600px;
+      height: 66px;
+    }
+
+    .asideRight {
+      display: flex;
+      flex-direction: column;
+      width: 600px;
+      height: 66px;
+    }
+  }
+
+  //content : 사용법,사용량 등
+  .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .contentImg {
+      width: 50%;
+      height: 780px;
+    }
+
+    .contentDirection {
+      width: 50%;
+      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .contentHead {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin: 10px 0px;
+        .title {
+          margin: 5px 0px;
+        }
+        .contetnExplain {
+          margin: 20px 0px;
+          font-size: 35px;
+        }
+      }
+
+      .contentUsed {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin: 10px 0px;
+        .usedTitle {
+          margin: 5px 0px;
+        }
+      }
+
+      .texture {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin: 10px 0px;
+        .textureTitle {
+          margin: 5px 0px;
+        }
+      }
+
+      .fragnance {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin: 10px 0px;
+        .fragnanceTitle {
+          margin: 5px 0px;
+        }
+      }
+    }
+  }
+
+  //carousel 함께 제품 추천
+
+  .wrapperCarousel {
+    // overflow: hidden;
+    .carousel {
+      width: 120vw;
+
+      .carouselInner {
+        margin: 0px;
+        width: 40vw;
+        float: left;
+
+        img {
+          width: 400px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
