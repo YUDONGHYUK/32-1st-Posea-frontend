@@ -1,0 +1,15 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.checkBoxes {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  .checkBoxText {
+    color: $primary;
+
+    &.isOverFourteen {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,15 +1,87 @@
 import React, { useState } from 'react';
-import Signup from './Signup/Signup';
+import FormLayout from './FormLayout/FormLayout';
 import './Login.scss';
 
-const Login = () => {
-  const originalTitle = {
+const RESPONSE_OBJECT = {
+  initial: {
     title: '안녕하세요',
     paragraph: '로그인 및 회원가입을 위한 이메일 주소를 입력 부탁드립니다.',
-    inputs: [],
-    buttonContent: '계속',
-  };
-  const [modalTitle, setModalTitle] = useState(originalTitle);
+    inputs: [
+      {
+        type: 'email',
+        name: 'email',
+        placeholder: '이메일 주소',
+      },
+    ],
+    btnContent: '계속',
+  },
+  'invalid email': {
+    title: '푀세아에 오신 것을 환영합니다.',
+    paragraph: '회원가입을 위해 아래 세부 정보를 작성해주세요.',
+    inputs: [
+      {
+        type: 'email',
+        name: 'email',
+        placeholder: '이메일 주소',
+      },
+      {
+        type: 'password',
+        name: 'password',
+        placeholder: '패스워드',
+      },
+      {
+        type: 'password',
+        name: 'passwordCheck',
+        placeholder: '패스워드 확인',
+      },
+      {
+        type: 'text',
+        name: 'lastName',
+        placeholder: '성',
+      },
+      {
+        type: 'text',
+        name: 'firstName',
+        placeholder: '이름',
+      },
+    ],
+    btnContent: '가입',
+    checkBoxes: [
+      {
+        type: 'checkBox',
+        className: 'checkBox',
+        name: 'checkBox',
+        id: 'checkBox',
+      },
+      {
+        type: 'checkBox',
+        className: 'checkBox',
+        name: 'checkBoxTwo',
+        id: 'checkBoxTwo',
+      },
+    ],
+  },
+  SUCCESS: {
+    title: '푀세아에 다시 오신 것을 환영합니다.',
+    paragraph: '패스워드를 입력해주세요.',
+    inputs: [
+      {
+        type: 'email',
+        name: 'email',
+        placeholder: '이메일 주소',
+      },
+      {
+        type: 'password',
+        name: 'password',
+        placeholder: '패스워드',
+      },
+    ],
+    btnContent: '로그인',
+  },
+};
+
+const Login = () => {
+  const [serverMessage, setServerMessage] = useState('invalid email');
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: null,
@@ -20,16 +92,15 @@ const Login = () => {
     checkBoxTwo: null,
   });
 
-  const [condition, setCondition] = useState(false);
-
-  // const modalClose = () => {
-  //   setModalOpen(!modalOpen);
-  // };
-
-  const resObj = {
-    'invalid email': ['password', 'passwordCheck', 'lastName', 'firstName'],
-    SUCCESS: ['email', 'password'],
-  };
+  const {
+    email,
+    password,
+    passwordCheck,
+    lastName,
+    firstName,
+    checkBox,
+    checkBoxTwo,
+  } = userInfo;
 
   const onChange = e => {
     const { name, value, checked } = e.target;
@@ -41,59 +112,63 @@ const Login = () => {
     });
   };
 
-  const goTosignup = e => {
-    e.preventDefault();
-    setCondition(true);
-    setModalTitle(prev => {
-      return {
-        ...prev,
-        ['buttonContent']: '가입',
-        ['title']: '푀세아에 오신 것을 환영합니다.',
-        ['paragraph']: '회원가입을 위해 아래 세부 정보를 작성해주세요.',
-      };
-    });
+  const postUserInfo = () => {
+    const btnText = RESPONSE_OBJECT[serverMessage].btnContent;
+
+    if (btnText === '계속') {
+      fetch('API 주소', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => setServerMessage(res.message));
+    } else if (btnText === '로그인') {
+      fetch('API 주소', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => setServerMessage(res.message));
+    } else {
+      fetch('API 주소', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+          passwordCheck,
+          lastName,
+          firstName,
+          checkBox,
+          checkBoxTwo,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => setServerMessage(res.message));
+    }
   };
 
   const onBackBtnClick = () => {
-    setCondition(false);
-    setModalTitle(originalTitle);
+    setServerMessage('initial');
   };
-
-  //패치 받았을 때 N 받으면 signup으로 넘어가기
-  // if ('response'.message === 'Invalid email') {
-  //   setModalTitle({
-  //     title: '푀세아에 오신 것을 환영합니다.',
-  //     paragraph: '회원가입을 위해 아래의 세부 정보를 작성해주세요.',
-  //     buttonContent: '가입',
-  //   });
-  //   userInfo();
-  // }
 
   return (
     <>
       <button className="loginBtn">로그인</button>
       <div className="modalOverlay">
-        <form className="modalBody" onSubmit={goTosignup}>
+        <form className="modalBody" onSubmit={postUserInfo}>
           <button className="modalExit" type="button">
             X
           </button>
-          <div className="modalBox">
-            <div className="modalText">
-              <h2 className="modalTitle">{modalTitle.title}</h2>
-              <p className="modalParagraph">{modalTitle.paragraph}</p>
-            </div>
-            <input
-              className="modalInput inputEmail"
-              placeholder="이메일 주소"
-              type="email"
-              name="email"
-              onChange={onChange}
-            />
-            {condition && (
-              <Signup onBackBtnClick={onBackBtnClick} onChange={onChange} />
-            )}
-            <button className="continueBtn">{modalTitle.buttonContent}</button>
-          </div>
+          <FormLayout
+            response={RESPONSE_OBJECT[serverMessage]}
+            onChange={onChange}
+            onBackBtnClick={onBackBtnClick}
+          />
         </form>
       </div>
     </>
