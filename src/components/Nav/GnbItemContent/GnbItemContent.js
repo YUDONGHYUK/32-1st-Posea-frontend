@@ -2,17 +2,11 @@ import React from 'react';
 import GnbItemContentMenu from '../GnbItemContentMenu/GnbItemContentMenu';
 import './GnbItemContent.scss';
 
-const GnbItemContent = ({ isClicked, list, name, imgSrc }) => {
+const GnbItemContent = ({ isClicked, list, imgSrc }) => {
   return (
     <div className={`gnbItemContent ${isClicked && 'isClicked'}`}>
-      {list.map(category => {
-        return (
-          <GnbItemContentMenu
-            key={category.id}
-            list={category.list}
-            title={category.title}
-          />
-        );
+      {list.map(({ id, list, title }) => {
+        return <GnbItemContentMenu key={id} list={list} title={title} />;
       })}
 
       <img

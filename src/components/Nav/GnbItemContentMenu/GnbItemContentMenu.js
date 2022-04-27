@@ -7,10 +7,10 @@ const GnbItemContentMenu = ({ list, title }) => {
       <li className="gnbItemContentItem">
         <h2 className="gnbItemContentMenuTitle">{title}</h2>
       </li>
-      {list.map(item => (
-        <li key={item.id} className="gnbItemContentItem">
-          <Link to={item.link}>
-            <span>{item.title}</span>
+      {list.map(({ id, link, title }) => (
+        <li key={id} className="gnbItemContentItem">
+          <Link to={link}>
+            <span>{title}</span>
           </Link>
         </li>
       ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import GnbItem from './GnbItem/GnbItem';
 import { navListData } from './gnbItemContentData';
 import './Nav.scss';
@@ -12,19 +12,6 @@ for (let dataItem of navListData) {
 const Nav = () => {
   const [menuClicked, setMenuClicked] = useState(firstData);
   const [lastClickedMenu, setLastClickedMenu] = useState(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  const gnbListRef = useRef();
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  function handleScroll() {
-    setScrollY(window.scrollY);
-  }
 
   const onGnbButtonClick = e => {
     document.body.classList.add('stop-scroll');
@@ -43,6 +30,7 @@ const Nav = () => {
     setMenuClicked(firstData);
     setLastClickedMenu(null);
   };
+
   return (
     <nav className="gnb" onScroll>
       <h1 className="mainTitle">Pösea</h1>
@@ -50,12 +38,7 @@ const Nav = () => {
         {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
       </div>
 
-      <ul
-        className={`gnbList ${lastClickedMenu && 'isOpen'} ${
-          scrollY > 80 ? 'navClose' : ''
-        }`}
-        ref={gnbListRef}
-      >
+      <ul className={`gnbList ${lastClickedMenu && 'isOpen'}`}>
         {navListData &&
           navListData.map(navItem => (
             <GnbItem

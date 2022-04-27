@@ -1,4 +1,4 @@
-export const skinCare = [
+const skinCare = [
   {
     id: 1,
     title: '카테고리',
@@ -120,7 +120,7 @@ export const skinCare = [
   },
 ];
 
-export const bodyHand = [
+const bodyHand = [
   {
     id: 1,
     title: '카테고리',

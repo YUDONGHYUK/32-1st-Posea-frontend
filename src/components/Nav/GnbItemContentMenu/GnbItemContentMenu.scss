@@ -1,0 +1,36 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.gnbItemContentMenu {
+  margin-bottom: 45px;
+
+  .gnbItemContentItem {
+    margin-bottom: 12px;
+    font-size: 14px;
+
+    a {
+      span {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 1px;
+          left: 0;
+          bottom: -2px;
+          background-color: $primary;
+          transition: width 250ms ease-in;
+        }
+      }
+
+      &:hover span::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .gnbItemContentMenuTitle {
+    font-weight: 700;
+  }
+}
