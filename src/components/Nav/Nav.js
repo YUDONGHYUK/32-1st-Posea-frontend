@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GnbItem from './GnbItem/GnbItem';
-import { navListData } from './gnbItemContentData';
 import './Nav.scss';
 
-const firstData = {};
-
-for (let dataItem of navListData) {
-  firstData[dataItem.name] = false;
-}
-
 const Nav = () => {
-  const [menuClicked, setMenuClicked] = useState(firstData);
+  const [menuClicked, setMenuClicked] = useState({});
   const [lastClickedMenu, setLastClickedMenu] = useState(null);
+  const [navListData, setNavListData] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/navListData.json')
+      .then(res => res.json())
+      .then(data => {
+        setNavListData(data);
+      });
+  }, []);
 
   const onGnbButtonClick = e => {
     document.body.classList.add('stop-scroll');
 
     setMenuClicked({
-      firstData,
       [e.target.name]: true,
     });
 
@@ -27,7 +28,7 @@ const Nav = () => {
   const onGnbCloseButtonClick = e => {
     document.body.classList.remove('stop-scroll');
 
-    setMenuClicked(firstData);
+    setMenuClicked({});
     setLastClickedMenu(null);
   };
 
@@ -49,15 +50,17 @@ const Nav = () => {
             />
           ))}
 
-        <li className="gnbItem">
-          <button
-            className="gnbItemTitle"
-            type="button"
-            onClick={onGnbCloseButtonClick}
-          >
-            닫기
-          </button>
-        </li>
+        {lastClickedMenu && (
+          <li className="gnbItem">
+            <button
+              className="gnbItemTitle"
+              type="button"
+              onClick={onGnbCloseButtonClick}
+            >
+              닫기
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );
