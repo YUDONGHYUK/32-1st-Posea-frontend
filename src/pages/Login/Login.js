@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import './Login.scss';
 
 const Login = () => {
-  const [serverMessage, setServerMessage] = useState('invalid email');
+  const [exitBtn, setExitBtn] = useState(false);
+  const [serverMessage, setServerMessage] = useState('initial');
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: null,
@@ -24,13 +25,26 @@ const Login = () => {
     checkBoxTwo,
   } = userInfo;
 
+  const outModal = useRef();
+
+  const exitBtnClick = () => {
+    setExitBtn(true);
+  };
+
+  const outModalBtnClick = e => {
+    if (outModal.current === e.target) {
+      setExitBtn(true);
+    }
+  };
+
   const onChange = e => {
     const { name, value, checked } = e.target;
-    setUserInfo(prev => {
-      if (name.indexOf('check') === -1) {
-        return { ...prev, [name]: value };
-      }
-      return { ...prev, [name]: checked };
+    const isCheckClicked = name.indexOf('check') === -1;
+    setUserInfo(userInfo => {
+      return {
+        ...userInfo,
+        [name]: isCheckClicked ? value : checked,
+      };
     });
   };
 
@@ -81,18 +95,22 @@ const Login = () => {
   return (
     <>
       <button className="loginBtn">로그인</button>
-      <div className="modalOverlay">
-        <form className="modalBody" onSubmit={postUserInfo}>
-          <button className="modalExit" type="button">
-            X
-          </button>
-          <FormLayout
-            response={RESPONSE_OBJECT[serverMessage]}
-            onChange={onChange}
-            onBackBtnClick={onBackBtnClick}
-          />
-        </form>
-      </div>
+      {exitBtn === false ? (
+        <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
+          <form className="modalBody" onSubmit={postUserInfo}>
+            <button className="modalExit" type="button" onClick={exitBtnClick}>
+              X
+            </button>
+            <FormLayout
+              response={RESPONSE_OBJECT[serverMessage]}
+              onChange={onChange}
+              onBackBtnClick={onBackBtnClick}
+            />
+          </form>
+        </div>
+      ) : (
+        true
+      )}
     </>
   );
 };
@@ -158,7 +176,7 @@ const RESPONSE_OBJECT = {
       },
     ],
   },
-  SUCCESS: {
+  ' SUCCESS': {
     title: '푀세아에 다시 오신 것을 환영합니다.',
     paragraph: '패스워드를 입력해주세요.',
     inputs: [
