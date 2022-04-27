@@ -1,5 +1,6 @@
 import React from 'react';
 import GnbItemContent from '../GnbItemContent/GnbItemContent';
+import './GnbItem.scss';
 
 const GnbItem = ({ onGnbButtonClick, isClicked, item }) => {
   const { name, title, list, imgSrc } = item;

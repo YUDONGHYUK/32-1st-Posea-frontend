@@ -32,7 +32,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="gnb" onScroll>
+    <nav className="gnb">
       <h1 className="mainTitle">Pösea</h1>
       <div className={`gnbItemBG ${lastClickedMenu}`}>
         {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
