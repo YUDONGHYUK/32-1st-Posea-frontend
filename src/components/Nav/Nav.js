@@ -6,6 +6,8 @@ const Nav = () => {
   const [menuClicked, setMenuClicked] = useState({});
   const [lastClickedMenu, setLastClickedMenu] = useState(null);
   const [navListData, setNavListData] = useState([]);
+  const [scrollY, setScrollY] = useState(0);
+  const [isScrollingUp, SetIsScrollingUp] = useState(true);
 
   useEffect(() => {
     fetch('/data/navListData.json')
@@ -15,8 +17,24 @@ const Nav = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (scrollY >= 80) {
+        scrollY - currentScrollY > 0
+          ? SetIsScrollingUp(true)
+          : SetIsScrollingUp(false);
+      }
+
+      setScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', onScroll);
+  }, [scrollY]);
+
   const onGnbButtonClick = e => {
-    document.body.classList.add('stop-scroll');
+    document.body.classList.add('stopScroll');
 
     setMenuClicked({
       [e.target.name]: true,
@@ -25,8 +43,8 @@ const Nav = () => {
     setLastClickedMenu(e.target.name);
   };
 
-  const onGnbCloseButtonClick = e => {
-    document.body.classList.remove('stop-scroll');
+  const onGnbCloseButtonClick = () => {
+    document.body.classList.remove('stopScroll');
 
     setMenuClicked({});
     setLastClickedMenu(null);
@@ -39,7 +57,11 @@ const Nav = () => {
         {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
       </div>
 
-      <ul className={`gnbList ${lastClickedMenu && 'isOpen'}`}>
+      <ul
+        className={`gnbList ${lastClickedMenu && 'isOpen'} ${
+          isScrollingUp ? 'isScrollingUp' : 'navClose'
+        } ${scrollY < 160 && 'isAtTop'}`}
+      >
         {navListData &&
           navListData.map(navItem => (
             <GnbItem

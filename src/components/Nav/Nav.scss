@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/variables.scss';
 
-.stop-scroll {
+.stopScroll {
   height: 100%;
   overflow: hidden;
 }
@@ -49,17 +49,30 @@
     top: 0;
     width: 100%;
     padding: 0 40px;
-    background-color: $primary;
+    background-color: $background;
+    border-bottom: 1px solid $border;
     z-index: 20;
-    transition: top 100ms ease-in;
+    transition: all 250ms ease-in;
+
+    .gnbItemTitle {
+      color: $primary;
+    }
 
     &.navClose {
-      top: -80px;
+      top: -81px;
+    }
+
+    &.isAtTop {
+      background-color: $primary;
+      border-bottom: none;
+
+      .gnbItemTitle {
+        color: $background;
+      }
     }
 
     &.isOpen {
       background-color: $background;
-      border-bottom: 1px solid $border;
 
       .gnbItemTitle {
         color: $primary;
