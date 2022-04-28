@@ -26,14 +26,18 @@ const FormLayout = ({ response, onChange, onBackBtnClick }) => {
       })}
 
       {inputs.length > 1 && (
-        <button className="backBtn" onClick={onBackBtnClick}>
+        <button type="button" className="backBtn" onClick={onBackBtnClick}>
           back
         </button>
       )}
 
       {checkBoxes && <Checkboxes onChange={onChange} />}
 
-      <button className="continueBtn">{btnContent}</button>
+      {btnContent.length > 1 && (
+        <button type="submit" className="continueBtn">
+          {btnContent}
+        </button>
+      )}
     </div>
   );
 };

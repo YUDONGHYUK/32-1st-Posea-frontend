@@ -4,16 +4,17 @@ import { RESPONSE_OBJECT } from './RESPONSE_OBJECT';
 import './Login.scss';
 
 const Login = () => {
+  const [openModalBtn, setOpenModalBtn] = useState(false);
   const [exit, setExit] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [userInfo, setUserInfo] = useState({
     email: '',
-    password: null,
-    passwordCheck: null,
-    lastName: null,
-    firstName: null,
-    checkBox: null,
-    checkBoxTwo: null,
+    password: '',
+    passwordCheck: '',
+    lastName: '',
+    firstName: '',
+    checkBox: false,
+    checkBoxTwo: false,
   });
   const [loggedUserName, setLoggedUserName] = useState('');
 
@@ -39,9 +40,18 @@ const Login = () => {
     }
   };
 
+  const openModal = () => {
+    setOpenModalBtn(true);
+    console.log(openModalBtn);
+  };
+
   const onBackBtnClick = () => {
     setServerMessage('initial');
   };
+
+  const isValidEmail = email.includes('@') && email.includes('.');
+  const isValidPassword =
+    password.match(/[~!@#$%";'^,&*()_+|</>=>`?:{[\}]/g) && password.length >= 8;
 
   const onChange = e => {
     const { name, value, checked } = e.target;
@@ -101,7 +111,9 @@ const Login = () => {
 
   return (
     <>
-      <button className="loginBtn">{loggedUserName || '로그인'}</button>
+      <button className="loginBtn" onClick={openModal}>
+        {loggedUserName || '로그인'}
+      </button>
       {!exit && (
         <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
           <form className="modalBody" onSubmit={postUserInfo}>
