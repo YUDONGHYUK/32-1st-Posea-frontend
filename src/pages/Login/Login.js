@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 import FormLayout from './FormLayout/FormLayout';
+import { RESPONSE_OBJECT } from './RESPONSE_OBJECT';
 import './Login.scss';
 
 const Login = () => {
-  const [exitBtn, setExitBtn] = useState(false);
+  const [exit, setExit] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -14,6 +15,7 @@ const Login = () => {
     checkBox: null,
     checkBoxTwo: null,
   });
+  const [loggedUserName, setLoggedUserName] = useState('');
 
   const {
     email,
@@ -28,13 +30,17 @@ const Login = () => {
   const outModal = useRef();
 
   const exitBtnClick = () => {
-    setExitBtn(true);
+    setExit(true);
   };
 
   const outModalBtnClick = e => {
     if (outModal.current === e.target) {
-      setExitBtn(true);
+      setExit(true);
     }
+  };
+
+  const onBackBtnClick = () => {
+    setServerMessage('initial');
   };
 
   const onChange = e => {
@@ -48,39 +54,44 @@ const Login = () => {
     });
   };
 
-  const postUserInfo = () => {
+  const postUserInfo = e => {
+    e.preventDefault();
     const btnText = RESPONSE_OBJECT[serverMessage].btnContent;
 
     if (btnText === '계속') {
-      fetch('API 주소', {
+      fetch('http://10.58.4.121:8000/users/check', {
         method: 'POST',
         body: JSON.stringify({
-          email,
+          email: email,
         }),
       })
         .then(res => res.json())
-        .then(res => setServerMessage(res.message));
+        .then(res => {
+          setServerMessage(res.message);
+        })
+        .catch(e => console.log(e));
     } else if (btnText === '로그인') {
-      fetch('API 주소', {
+      fetch('http://10.58.4.121:8000/users/login', {
         method: 'POST',
         body: JSON.stringify({
-          email,
-          password,
+          email: email,
+          password: password,
         }),
       })
         .then(res => res.json())
-        .then(res => setServerMessage(res.message));
+        .then(res => {
+          localStorage.setItem('token', res.token);
+          setExit(true);
+          setLoggedUserName(`${res.last_name}${res.first_name}`);
+        });
     } else {
-      fetch('API 주소', {
+      fetch('http://10.58.4.121:8000/users/signup', {
         method: 'POST',
         body: JSON.stringify({
-          email,
-          password,
-          passwordCheck,
-          lastName,
-          firstName,
-          checkBox,
-          checkBoxTwo,
+          email: email,
+          password: password,
+          last_name: lastName,
+          first_name: firstName,
         }),
       })
         .then(res => res.json())
@@ -88,14 +99,10 @@ const Login = () => {
     }
   };
 
-  const onBackBtnClick = () => {
-    setServerMessage('initial');
-  };
-
   return (
     <>
-      <button className="loginBtn">로그인</button>
-      {exitBtn === false ? (
+      <button className="loginBtn">{loggedUserName || '로그인'}</button>
+      {!exit && (
         <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
           <form className="modalBody" onSubmit={postUserInfo}>
             <button className="modalExit" type="button" onClick={exitBtnClick}>
@@ -108,89 +115,9 @@ const Login = () => {
             />
           </form>
         </div>
-      ) : (
-        true
       )}
     </>
   );
 };
 
 export default Login;
-
-const RESPONSE_OBJECT = {
-  initial: {
-    title: '안녕하세요',
-    paragraph: '로그인 및 회원가입을 위한 이메일 주소를 입력 부탁드립니다.',
-    inputs: [
-      {
-        type: 'email',
-        name: 'email',
-        placeholder: '이메일 주소',
-      },
-    ],
-    btnContent: '계속',
-  },
-  'invalid email': {
-    title: '푀세아에 오신 것을 환영합니다.',
-    paragraph: '회원가입을 위해 아래 세부 정보를 작성해주세요.',
-    inputs: [
-      {
-        type: 'email',
-        name: 'email',
-        placeholder: '이메일 주소',
-      },
-      {
-        type: 'password',
-        name: 'password',
-        placeholder: '패스워드',
-      },
-      {
-        type: 'password',
-        name: 'passwordCheck',
-        placeholder: '패스워드 확인',
-      },
-      {
-        type: 'text',
-        name: 'lastName',
-        placeholder: '성',
-      },
-      {
-        type: 'text',
-        name: 'firstName',
-        placeholder: '이름',
-      },
-    ],
-    btnContent: '가입',
-    checkBoxes: [
-      {
-        type: 'checkBox',
-        className: 'checkBox',
-        name: 'checkBox',
-        id: 'checkBox',
-      },
-      {
-        type: 'checkBox',
-        className: 'checkBox',
-        name: 'checkBoxTwo',
-        id: 'checkBoxTwo',
-      },
-    ],
-  },
-  ' SUCCESS': {
-    title: '푀세아에 다시 오신 것을 환영합니다.',
-    paragraph: '패스워드를 입력해주세요.',
-    inputs: [
-      {
-        type: 'email',
-        name: 'email',
-        placeholder: '이메일 주소',
-      },
-      {
-        type: 'password',
-        name: 'password',
-        placeholder: '패스워드',
-      },
-    ],
-    btnContent: '로그인',
-  },
-};
