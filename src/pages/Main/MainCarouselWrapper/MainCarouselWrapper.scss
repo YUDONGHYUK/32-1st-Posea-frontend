@@ -1,10 +1,11 @@
+@import '../../../styles/variables.scss';
+
 .mainCarouselWrapper {
   padding-top: 150px;
   padding-bottom: 50px;
 
   .mainCarousel {
     position: relative;
-    width: 100%;
     height: 550px;
     overflow-x: hidden;
   }
@@ -13,6 +14,16 @@
     display: flex;
     padding-left: 80px;
     transition: transform 250ms ease-in;
+
+    &:hover ~ .carouselBtns {
+      .left {
+        transform: translateX(100%);
+      }
+
+      .right {
+        transform: translateX(-100%);
+      }
+    }
   }
 
   .carouselItemContainer {
@@ -43,7 +54,7 @@
     height: 2px;
     margin-left: 80px;
     margin-bottom: 40px;
-    background-color: #cccbc1;
+    background-color: $border;
 
     .carouselInnerPaginationBar {
       width: 20%;
@@ -53,26 +64,32 @@
     }
   }
 
-  .carouselLeftBtn,
-  .carouselRightBtn {
+  .carouselBtn {
+    position: absolute;
+    top: 160px;
     width: 80px;
     height: 80px;
     font-size: 18px;
     color: white;
-    background-color: black;
+    background-color: $secondary;
     transition: transform 250ms ease-in;
+
+    &.left {
+      left: -80px;
+    }
+
+    &.right {
+      right: -80px;
+    }
   }
 
-  .carouselLeftBtn {
-    position: absolute;
-    left: -80px;
-    top: 160px;
-  }
+  .carouselBtns:hover {
+    .left {
+      transform: translateX(100%);
+    }
 
-  .carouselRightBtn {
-    position: absolute;
-    right: -80px;
-
-    top: 160px;
+    .right {
+      transform: translateX(-100%);
+    }
   }
 }

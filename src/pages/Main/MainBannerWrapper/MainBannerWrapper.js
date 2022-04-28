@@ -1,16 +1,18 @@
 import React from 'react';
-import MainContext from '../MainContext/MainContext';
+import SectionContext from '../MainContext/SectionContext';
 import './MainBannerWrapper.scss';
 
 const MainBannerWrapper = () => (
   <section className="mainBannerWrapper">
-    <img
-      className="mainBannerImg"
-      alt="main-imamge"
-      src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-    />
+    <div className="mainBannerImgContainer">
+      <img
+        className="mainBannerImg"
+        alt="main-imamge"
+        src="https://images.unsplash.com/photo-1614859475299-814a09cd2e79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+      />
+    </div>
     <div className="mainBannerContent">
-      <MainContext />
+      <SectionContext />
     </div>
   </section>
 );

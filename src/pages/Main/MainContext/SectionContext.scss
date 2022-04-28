@@ -1,0 +1,47 @@
+@import '../../../styles/variables.scss';
+
+.SectionContextWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  color: white;
+  color: $primary;
+
+  &.black {
+    color: $secondary;
+  }
+
+  .SectionContextHeader {
+    margin-bottom: 20px;
+    font-weight: 100;
+  }
+
+  .SectionContextHeader.text1 {
+    font-size: 14px;
+  }
+
+  .SectionContextHeader.text2 {
+    font-size: 30px;
+  }
+
+  .SectionContextParagraph {
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+
+  .InnerLinkWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+    height: 60px;
+    padding: 0 23px;
+    border: 1px solid $secondary;
+
+    &:hover {
+      background-color: $secondary;
+      color: white;
+      transition: all 250ms ease-in;
+    }
+  }
+}

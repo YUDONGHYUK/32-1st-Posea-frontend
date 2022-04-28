@@ -1,6 +1,6 @@
 import React from 'react';
+import SectionContext from '../MainContext/SectionContext';
 import './MainReleaseWrapper.scss';
-import MainContext from '../MainContext/MainContext';
 
 const MainReleaseWrapper = () => (
   <section className="mainReleaseWrapper">
@@ -14,7 +14,7 @@ const MainReleaseWrapper = () => (
       </div>
 
       <div className="mainReleaseContent">
-        <MainContext color="black" />
+        <SectionContext />
       </div>
     </div>
   </section>

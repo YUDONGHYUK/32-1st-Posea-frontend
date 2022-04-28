@@ -1,39 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import MainCarouselItem from '../MainCarouselItem/MainCarouselItem';
 import './MainCarouselWrapper.scss';
+
+const IMG_WIDTH = 400;
+const IMG_COUNT = 7;
+const SHOWN_IMAGE_NUMBER = 3;
 
 const MainCarouselWrapper = () => {
   const itemListRef = useRef();
   const paginationBarRef = useRef();
-  const carouseLeftBtn = useRef();
-  const carouseRightBtn = useRef();
+  const [carouselData, setCarouselData] = useState([]);
 
-  const handleCarouselBtn = e => {
-    if (e.type === 'mouseover') {
-      carouseLeftBtn.current.style.transform = 'translateX(100%)';
-      carouseRightBtn.current.style.transform = 'translateX(-100%)';
-    } else if (e.type === 'mouseleave') {
-      carouseLeftBtn.current.style.transform = 'translateX(0)';
-      carouseRightBtn.current.style.transform = 'translateX(0)';
-    }
-  };
+  useEffect(() => {
+    fetch('/data/main/CARAUSEL_DATA.json')
+      .then(res => res.json())
+      .then(data => setCarouselData(data));
+  }, []);
 
   const moveCarouselLeft = () => {
     const itemListRec = itemListRef.current.getBoundingClientRect();
     const itemListX = itemListRec.x;
 
-    if (itemListX >= 0) {
+    if (itemListX < 0) {
       itemListRef.current.style.transform = `translateX(${
-        400 * Math.floor(itemListX / 400)
+        IMG_WIDTH * Math.floor(itemListX / IMG_WIDTH + 1)
       }px)`;
       paginationBarRef.current.style.transform = `translateX(${
-        100 * Math.floor(itemListX / 400)
-      }%)`;
-    } else if (itemListX < 0) {
-      itemListRef.current.style.transform = `translateX(${
-        400 * Math.floor(itemListX / 400 + 1)
-      }px)`;
-      paginationBarRef.current.style.transform = `translateX(${
-        -100 * Math.floor(itemListX / 400 + 1)
+        -100 * Math.floor(itemListX / IMG_WIDTH + 1)
       }%)`;
     }
   };
@@ -42,19 +35,12 @@ const MainCarouselWrapper = () => {
     const itemListRec = itemListRef.current.getBoundingClientRect();
     const itemListX = itemListRec.x;
 
-    if (itemListX <= -1600) {
+    if (itemListX > -(IMG_WIDTH * (IMG_COUNT - SHOWN_IMAGE_NUMBER))) {
       itemListRef.current.style.transform = `translateX(${
-        400 * Math.ceil(itemListX / 400)
+        IMG_WIDTH * Math.ceil(itemListX / IMG_WIDTH - 1)
       }px)`;
       paginationBarRef.current.style.transform = `translateX(${
-        -100 * Math.ceil(itemListX / 400)
-      }%)`;
-    } else if (itemListX >= -1600) {
-      itemListRef.current.style.transform = `translateX(${
-        400 * Math.ceil(itemListX / 400 - 1)
-      }px)`;
-      paginationBarRef.current.style.transform = `translateX(${
-        -100 * Math.ceil(itemListX / 400 - 1)
+        -100 * Math.ceil(itemListX / IMG_WIDTH - 1)
       }%)`;
     }
   };
@@ -62,105 +48,21 @@ const MainCarouselWrapper = () => {
   return (
     <section className="mainCarouselWrapper">
       <div className="mainCarousel">
-        <div
-          ref={itemListRef}
-          className="carouselItemList"
-          onMouseOver={handleCarouselBtn}
-          onMouseLeave={handleCarouselBtn}
-        >
-          {/* 1st item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 2nd item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 3rd item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 4th item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 5th item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 6th item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
-          {/* 7th item */}
-          <div className="carouselItemContainer">
-            <img
-              className="carouselItemImg"
-              alt="carouselItem"
-              src="https://images.ctfassets.net/u1nb1km7t5q7/61UwjoBL7R6dHstLKSZIKx/dd5dd3a75b6fab0df57b3486354cee5f/Aesop_Tacit_Eau_de_Parfum_50mL_Hybris_Large_684x668px.png"
-            />
-            <span className="itemName">테싯 오 드 퍼퓸</span>
-            <span className="itemDescription">상쾌한, 그린, 시트러스향</span>
-          </div>
+        <div ref={itemListRef} className="carouselItemList">
+          {carouselData.map(item => (
+            <MainCarouselItem key={item.id} item={item} />
+          ))}
+        </div>
+        <div className="carouselBtns">
+          <button className="carouselBtn left" onClick={moveCarouselLeft}>
+            <i className="fa-solid fa-angle-left" />
+          </button>
+          <button className="carouselBtn right" onClick={moveCarouselRight}>
+            <i className="fa-solid fa-angle-right" />
+          </button>
         </div>
         <div className="carouselPaginationBar">
           <div ref={paginationBarRef} className="carouselInnerPaginationBar" />
-        </div>
-        <div className="carouselBtns">
-          <button
-            ref={carouseLeftBtn}
-            className="carouselLeftBtn"
-            onClick={moveCarouselLeft}
-            onMouseOver={handleCarouselBtn}
-            onMouseLeave={handleCarouselBtn}
-          >
-            <i className="fa-solid fa-angle-left" />
-          </button>
-          <button
-            ref={carouseRightBtn}
-            className="carouselRightBtn"
-            onClick={moveCarouselRight}
-            onMouseOver={handleCarouselBtn}
-            onMouseLeave={handleCarouselBtn}
-          >
-            <i className="fa-solid fa-angle-right" />
-          </button>
         </div>
       </div>
     </section>
