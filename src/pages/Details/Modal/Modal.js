@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.scss';
 
-const Modal = ({ isModalShow, onModalShowBtnClick }) => {
+const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
   const [details, setDetails] = useState('');
 
   useEffect(data => {
@@ -10,19 +10,19 @@ const Modal = ({ isModalShow, onModalShowBtnClick }) => {
       .then(data => setDetails(data));
   }, []);
 
-  const onExitBtnClick = ({ isModalNoShow, setModalNoShow }) => {
-    setModalNoShow(true);
-    console.log('굿굿!');
-  };
+  // const onExitBtnClick = ({ isModalNoShow, setModalNoShow }) => {
+  //   setModalNoShow(true);
+  //   console.log('굿굿!');
+  // };
 
   return (
     <>
       <button onClick={onModalShowBtnClick}>뿅</button>
       <aside className={`modal ${isModalShow && 'modalActive'}`}>
-        <div className="overlay" onClick={onExitBtnClick} />
+        <div className="overlay" onClick={noShow} />
         <div className="modalAll">
           <div className="modalWrapper">
-            <button className="exitBtn" onClick={onExitBtnClick}>
+            <button className="exitBtn" onClick={noShow}>
               X
             </button>
             <h3 className="modalTitle">{details.title}</h3>
