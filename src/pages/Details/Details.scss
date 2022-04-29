@@ -1,12 +1,14 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
 .page {
-  padding-top: 80px;
   background-color: #f0efe0;
 
-  //info : 제품 사진 + 설명 + 카트추카버튼
+  //info : 제품 사진 + 설명 + 카트추버튼
 
   .info {
-    display: flex;
-    flex-direction: row;
+    @include flexbox(flex-start, flex-start);
+
     margin-top: 120px;
 
     .infoImgLeft {
@@ -27,14 +29,15 @@
         width: 350px;
         font-size: 14px;
         text-align: center;
+        color: $primary;
       }
     }
 
     .infoRight {
-      display: flex;
-      flex-direction: column;
-      align-items: space-evenly;
+      @include column-flexbox(flex-start, space-evenly);
+
       width: 360px;
+
       .title {
         margin: 5px;
       }
@@ -42,22 +45,33 @@
 
     .infoHeader {
       margin-bottom: 20px;
-      .title {
-        margin: 5px;
-      }
-    }
-    .infoName {
-      margin-bottom: 20px;
-      font-size: 30px;
+
       .title {
         margin: 5px;
       }
     }
 
-    .infoType {
-      margin: 10xp 0px;
+    .infoName {
+      margin-bottom: 20px;
+      font-size: 30px;
+
       .title {
-        margin: 5px 0px;
+        margin: 5px;
+      }
+    }
+
+    //productInfo
+
+    .productInfo {
+      .infoContent {
+        @include column-flexbox(flex-start, flex-start);
+
+        width: 400px;
+        margin: 10px 0px;
+
+        .title {
+          margin: 5px 0px;
+        }
       }
     }
 
@@ -65,39 +79,42 @@
       width: 360px;
       height: 60px;
       margin: 20px 0px;
-      background-color: #333;
-      color: whitesmoke;
+      background-color: $primary;
+      color: $background;
     }
   }
 
   //aside:  포장,서비스 안내
 
   .asideList {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    @include flexbox(space-evenly, flex-start);
+
     padding: 100px 100px;
     width: 100%;
 
     .asideLeft {
-      display: flex;
-      flex-direction: column;
-      width: 600px;
+      @include column-flexbox(flex-start, center);
+
+      width: 450px;
       height: 66px;
+      font-size: 14px;
     }
 
     .asideRight {
-      display: flex;
-      flex-direction: column;
-      width: 600px;
+      @include column-flexbox(flex-start, center);
+
+      width: 480px;
       height: 66px;
+      padding-left: 80px;
+      font-size: 14px;
+      border-left: 1px solid gray;
     }
   }
 
   //content : 사용법,사용량 등
   .content {
-    display: flex;
-    flex-direction: row;
+    @include flexbox(flex-start, flex-start);
+
     width: 100%;
 
     .contentImg {
@@ -106,53 +123,37 @@
     }
 
     .contentDirection {
+      @include column-flexbox(flex-start);
+
       width: 50%;
       padding-top: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
 
       .contentHead {
-        display: flex;
-        flex-direction: column;
+        @include column-flexbox(flex-start, flex-start);
+
         width: 400px;
         margin: 10px 0px;
+
         .title {
           margin: 5px 0px;
         }
+
         .contetnExplain {
           margin: 20px 0px;
           font-size: 35px;
         }
       }
+      // infoTable usageInfo : 사용량, 텍스처, 향
+      .usageInfo {
+        .usageText {
+          @include column-flexbox(flex-start, flex-start);
 
-      .contentUsed {
-        display: flex;
-        flex-direction: column;
-        width: 400px;
-        margin: 10px 0px;
-        .usedTitle {
-          margin: 5px 0px;
-        }
-      }
+          width: 400px;
+          margin: 10px 0px;
 
-      .texture {
-        display: flex;
-        flex-direction: column;
-        width: 400px;
-        margin: 10px 0px;
-        .textureTitle {
-          margin: 5px 0px;
-        }
-      }
-
-      .fragnance {
-        display: flex;
-        flex-direction: column;
-        width: 400px;
-        margin: 10px 0px;
-        .fragnanceTitle {
-          margin: 5px 0px;
+          .title {
+            margin: 5px 0px;
+          }
         }
       }
     }
