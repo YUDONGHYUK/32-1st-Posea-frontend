@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT } from './RESPONSE_OBJECT';
+import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [openModalBtn, setOpenModalBtn] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [userInfo, setUserInfo] = useState({
@@ -40,8 +42,7 @@ const Login = () => {
   };
 
   const openModal = () => {
-    setOpenModalBtn(true);
-    console.log(openModalBtn);
+    localStorage.getItem('token') ? navigate('/') : setOpenModalBtn(true);
   };
 
   const onBackBtnClick = () => {
