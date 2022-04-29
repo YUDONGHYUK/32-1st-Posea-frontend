@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+
+.footerBanner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 72px;
+  color: white;
+  background-color: $secondary;
+  border-top: 2px solid white;
+  padding: 0 40px;
+}
