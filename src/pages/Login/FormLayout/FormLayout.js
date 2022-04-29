@@ -33,7 +33,7 @@ const FormLayout = ({ response, onChange, onBackBtnClick }) => {
 
       {checkBoxes && <Checkboxes onChange={onChange} />}
 
-      {btnContent.length > 1 && (
+      {btnContent && (
         <button type="submit" className="continueBtn">
           {btnContent}
         </button>

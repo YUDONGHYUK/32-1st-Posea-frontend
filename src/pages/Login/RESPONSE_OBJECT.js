@@ -76,8 +76,6 @@ export const RESPONSE_OBJECT = {
   },
   SIGNUP_SUCCESS: {
     title: '감사합니다, ',
-    paragraph: '내 계정이 생성되었습니다.',
-    inputs: [],
-    btnContent: '',
+    paragraph: '사용자의 계정이 생성되었습니다.',
   },
 };
