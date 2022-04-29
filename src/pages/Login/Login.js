@@ -5,7 +5,6 @@ import './Login.scss';
 
 const Login = () => {
   const [openModalBtn, setOpenModalBtn] = useState(false);
-  const [exit, setExit] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -31,12 +30,12 @@ const Login = () => {
   const outModal = useRef();
 
   const exitBtnClick = () => {
-    setExit(true);
+    setOpenModalBtn(false);
   };
 
   const outModalBtnClick = e => {
     if (outModal.current === e.target) {
-      setExit(true);
+      setOpenModalBtn(false);
     }
   };
 
@@ -91,7 +90,7 @@ const Login = () => {
         .then(res => res.json())
         .then(res => {
           localStorage.setItem('token', res.token);
-          setExit(true);
+          setOpenModalBtn(false);
           setLoggedUserName(`${res.last_name}${res.first_name}`);
         });
     } else {
@@ -114,7 +113,7 @@ const Login = () => {
       <button className="loginBtn" onClick={openModal}>
         {loggedUserName || '로그인'}
       </button>
-      {!exit && (
+      {openModalBtn && (
         <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
           <form className="modalBody" onSubmit={postUserInfo}>
             <button className="modalExit" type="button" onClick={exitBtnClick}>
