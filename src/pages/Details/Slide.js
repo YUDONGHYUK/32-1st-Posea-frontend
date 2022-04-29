@@ -1,8 +1,7 @@
 // 1. 캐러셀 리스트 위치(carousel) 알려주기
 // 2. 캐러셀 리스트 감싸는 div(wrapperCarousel)에 overflow hidden 주기
-//3.
+
 import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
 
 export default function Slide() {
   return (
