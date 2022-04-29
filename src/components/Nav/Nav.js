@@ -3,8 +3,9 @@ import GnbItem from './GnbItem/GnbItem';
 import './Nav.scss';
 
 const Nav = () => {
-  const [menuClicked, setMenuClicked] = useState({});
-  const [lastClickedMenu, setLastClickedMenu] = useState(null);
+  const [menuClicked, setMenuClicked] = useState({
+    lastClickedMenu: null,
+  });
   const [navListData, setNavListData] = useState([]);
   const [scrollY, setScrollY] = useState(0);
   const [isScrollingUp, SetIsScrollingUp] = useState(true);
@@ -33,21 +34,22 @@ const Nav = () => {
     window.addEventListener('scroll', onScroll);
   }, [scrollY]);
 
+  const { lastClickedMenu } = menuClicked;
+
   const onGnbButtonClick = e => {
     document.body.classList.add('stopScroll');
 
     setMenuClicked({
-      [e.target.name]: true,
+      lastClickedMenu: e.target.name,
     });
-
-    setLastClickedMenu(e.target.name);
   };
 
   const onGnbCloseButtonClick = () => {
     document.body.classList.remove('stopScroll');
 
-    setMenuClicked({});
-    setLastClickedMenu(null);
+    setMenuClicked({
+      lastClickedMenu: null,
+    });
   };
 
   return (
@@ -67,7 +69,7 @@ const Nav = () => {
             <GnbItem
               key={navItem.id}
               onGnbButtonClick={onGnbButtonClick}
-              isClicked={menuClicked[navItem.name]}
+              isClicked={lastClickedMenu === navItem.name}
               item={navItem}
             />
           ))}
