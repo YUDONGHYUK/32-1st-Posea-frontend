@@ -1,0 +1,35 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.productsLnb {
+  padding: 0 40px;
+  font-size: 14px;
+  background-color: $backgroundLNB;
+
+  .productsLnbList {
+    @include flexbox(flex-start);
+
+    .productsLnbItem {
+      margin-right: 20px;
+
+      &:first-child {
+        display: flex;
+        align-items: center;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 1px;
+          height: 14px;
+          margin-left: 20px;
+          background-color: $primary;
+        }
+      }
+
+      a {
+        display: block;
+        padding: 40px 0;
+      }
+    }
+  }
+}
