@@ -11,7 +11,7 @@ const InfoRight = ({ productInfo }) => {
       />
       <InfoDetails details={productInfo.details} />
       <button className="btn">
-        카트에 추가하기 <span>27,000</span>
+        카트에 추가하기 - <span>₩27,000</span>
       </button>
     </div>
   );
