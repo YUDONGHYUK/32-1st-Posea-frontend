@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+
+.footerGridContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  color: $background;
+  background-color: $secondary;
+  padding: 50px 40px;
+
+  .footerSignUp {
+    font-size: 12.5px;
+    width: 100%;
+
+    .inputBox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $secondary;
+      border: 1px solid white;
+      width: 100%;
+      height: 37px;
+
+      .inputBoxInput {
+        flex-basis: 100%;
+        height: 33px;
+        border: 0;
+        padding: 0 8px;
+        color: white;
+        background-color: $secondary;
+        font-size: 20px;
+
+        &::placeholder {
+          color: white;
+        }
+      }
+
+      .inputBoxButton {
+        width: 37px;
+        color: white;
+      }
+    }
+
+    .Description {
+      display: block;
+      margin-top: 20px;
+    }
+
+    .ageVerification {
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+
+      input {
+        margin: 0;
+      }
+
+      span {
+        margin-left: 8px;
+      }
+    }
+  }
+}
