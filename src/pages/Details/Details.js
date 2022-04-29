@@ -7,14 +7,17 @@ import Modal from './Modal/Modal';
 const Details = () => {
   const [productInfo, setProductInfo] = useState({});
   const [isModalShow, setIsModalShow] = useState(false);
-  const [isModalNoShow, setModalNoShow] = useState(false);
+  // const [isModalNoShow, setModalNoShow] = useState(false);
 
   const onModalShowBtnClick = () => {
     setIsModalShow(true);
   };
 
   const onModalExitBtnClick = () => {
-    setModalNoShow(true);
+    console.log(123);
+    setIsModalShow(false);
+    // setModalNoShow(true); show, noshow 2개로 분리하지말고
+    // show하나로 true,false 값 줘서 하기
   };
 
   useEffect(() => {
@@ -105,14 +108,12 @@ const Details = () => {
             </div>
           </div>
         </div>
-        <button>btn1</button>
-        <button>btn2</button>
-        <button>btn3</button>
       </div>
       <Modal
         isModalShow={isModalShow}
         onModalShowBtnClick={onModalShowBtnClick}
-        isModalNoShow={isModalNoShow}
+        noShow={onModalExitBtnClick}
+        // isModalNoShow={isModalNoShow}
       />
     </>
   );
