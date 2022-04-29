@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 
-.SectionContextWrapper {
+.sectionContextWrapper {
   display: flex;
   flex-direction: column;
   width: 390px;
@@ -11,25 +11,25 @@
     color: $secondary;
   }
 
-  .SectionContextHeader {
+  .sectionContextHeader {
     margin-bottom: 20px;
     font-weight: 100;
   }
 
-  .SectionContextHeader.text1 {
+  .sectionContextHeader.text1 {
     font-size: 14px;
   }
 
-  .SectionContextHeader.text2 {
+  .sectionContextHeader.text2 {
     font-size: 30px;
   }
 
-  .SectionContextParagraph {
+  .sectionContextParagraph {
     line-height: 1.7;
     margin-bottom: 30px;
   }
 
-  .InnerLinkWrapper {
+  .innerLinkWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
