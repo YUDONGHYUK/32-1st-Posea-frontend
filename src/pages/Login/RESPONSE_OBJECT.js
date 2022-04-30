@@ -75,7 +75,7 @@ export const RESPONSE_OBJECT = {
     btnContent: '로그인',
   },
   SIGNUP_SUCCESS: {
-    title: '감사합니다, ',
+    title: '감사합니다. ',
     paragraph: '사용자의 계정이 생성되었습니다.',
   },
 };

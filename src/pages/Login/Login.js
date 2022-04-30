@@ -34,11 +34,13 @@ const Login = () => {
   const outModal = useRef();
   const isValidEmail = email.includes('@') && email.includes('.');
   const isValidPassword =
-    password.match(/[~!@#$%";'^,&*()_+|</>=>`?:{[\}]/g) && password.length >= 8;
+    password.match(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g) &&
+    password.length >= 8;
   const isInputEmpty = Object.values(userInfo).some(info => info === '');
 
   const exitBtnClick = () => {
     setOpenModalBtn(false);
+    setServerMessage('initial');
   };
 
   const outModalBtnClick = e => {
@@ -112,6 +114,8 @@ const Login = () => {
           setLoggedUserName(`${res.last_name}${res.first_name}`);
         });
     } else {
+      setErrorMessage('');
+
       if (!isValidPassword) {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
         return;
@@ -142,7 +146,19 @@ const Login = () => {
         }),
       })
         .then(res => res.json())
-        .then(res => setServerMessage(res.message));
+        .then(res => {
+          setServerMessage(res.message);
+
+          setUserInfo({
+            email: '',
+            password: '',
+            passwordCheck: '',
+            lastName: '',
+            firstName: '',
+            checkBox: false,
+            checkBoxTwo: false,
+          });
+        });
     }
   };
 
