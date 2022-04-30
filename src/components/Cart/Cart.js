@@ -33,8 +33,14 @@ const Cart = () => {
   };
 
   const handleModal = e => {
-    e.target === e.currentTarget &&
-      (toggleModal ? setToggleModal(false) : setToggleModal(true));
+    if (toggleModal && e.target === e.currentTarget) {
+      setToggleModal(false);
+      document.body.style.overflow = 'unset';
+    }
+    if (!toggleModal && e.target === e.currentTarget) {
+      setToggleModal(true);
+      document.body.style.overflow = 'hidden';
+    }
   };
 
   return (
@@ -42,18 +48,19 @@ const Cart = () => {
       <div
         className={`modal ${toggleModal ? 'active' : ''}`}
         onClick={handleModal}
-      />
-      <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
-        <div className="cartContainer">
-          <CartItemHeader handleModal={handleModal} />
-          <CartItems
-            cartList={cartList}
-            handleAmount={handleAmount}
-            handleDelete={handleDelete}
-          />
-        </div>
-        <CartSummary totalPrice={totalPrice} />
-      </section>
+      >
+        <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
+          <div className="cartContainer">
+            <CartItemHeader handleModal={handleModal} />
+            <CartItems
+              cartList={cartList}
+              handleAmount={handleAmount}
+              handleDelete={handleDelete}
+            />
+          </div>
+          <CartSummary totalPrice={totalPrice} />
+        </section>
+      </div>
       {/* 테스트용 버튼 */}
       <button className="modalBtn" onClick={handleModal}>
         장바구니
