@@ -5,47 +5,18 @@
   @include flexbox(flex-start);
 
   width: 100%;
+  background-color: $background;
   overflow: hidden;
 
-  .carouselIntro {
-    @include column-flexbox(flex-end, flex-start);
-    flex-shrink: 0;
-
-    padding: 40px 40px 80px;
-    width: 25vw;
-    height: 530px;
-
-    .carouselIntroTitle {
-      margin-bottom: 16px;
-      font-size: 24px;
-    }
-
-    .carouselIntroDesc {
-      margin-bottom: 50px;
-      font-size: 16px;
-    }
-
-    .carouselIntroLink {
-      font-size: 14px;
-    }
-  }
-
-  .carouselList {
-    @include flexbox(flex-start);
-    width: 75vw;
+  &:nth-child(even) {
+    background-color: $backgroundDark;
 
     .carouselItem {
-      @include column-flexbox;
-
-      width: calc(75vw / 3);
-      height: 530px;
-      flex-shrink: 0;
-    }
-
-    img {
-      display: block;
-      width: 290px;
-      margin: 0 auto;
+      a {
+        &:hover {
+          background-color: $productListHoverDark;
+        }
+      }
     }
   }
 }

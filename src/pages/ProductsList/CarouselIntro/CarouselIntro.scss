@@ -1,0 +1,31 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.carouselIntro {
+  @include column-flexbox(flex-end, flex-start);
+
+  flex-shrink: 0;
+  padding: 40px 40px 80px;
+  width: 25vw;
+  height: 530px;
+  background-color: inherit;
+  z-index: 30;
+
+  .carouselIntroTitle {
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
+
+  .carouselIntroDesc {
+    margin-bottom: 50px;
+    font-size: 16px;
+  }
+
+  .carouselIntroLink {
+    font-size: 14px;
+
+    .carouselIntroLinkText {
+      margin-right: 8px;
+    }
+  }
+}

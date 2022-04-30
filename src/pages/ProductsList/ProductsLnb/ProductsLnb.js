@@ -2,15 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductsLnb.scss';
 
-const ProductsLnb = ({ list }) => {
+const ProductsLnb = ({ categoryTitle, categoryLink, subCategories }) => {
   return (
     <nav className="productsLnb">
       <ul className="productsLnbList">
-        {list.map(({ id, link, title }) => (
-          <li key={id} className="productsLnbItem">
-            <Link to={link}>{title}</Link>
-          </li>
-        ))}
+        <li className="productsLnbItem">
+          <Link to={categoryLink}>모든 {categoryTitle}</Link>
+        </li>
+
+        {subCategories &&
+          subCategories.map(({ id, link, title }) => (
+            <li key={id} className="productsLnbItem">
+              <Link to={link}>{title}</Link>
+            </li>
+          ))}
       </ul>
     </nav>
   );

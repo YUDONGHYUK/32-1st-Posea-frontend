@@ -1,0 +1,56 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.carouselBtns {
+  position: absolute;
+  right: 0;
+  width: 75vw;
+  height: 530px;
+
+  .carouselBtnWrapper {
+    @include pos-center-y;
+
+    width: 100px;
+    height: 100%;
+    overflow: hidden;
+    z-index: 20;
+
+    &.left {
+      left: 0;
+
+      &:hover {
+        .carouselBtn.leftBtn {
+          left: 0;
+        }
+      }
+    }
+
+    &.right {
+      right: 0;
+
+      &:hover {
+        .carouselBtn.rightBtn {
+          right: 0;
+        }
+      }
+    }
+  }
+
+  .carouselBtn {
+    @include pos-center-y;
+
+    width: 80px;
+    height: 80px;
+    background-color: $primary;
+    color: $background;
+    transition: all 250ms ease-in;
+
+    &.leftBtn {
+      left: -80px;
+    }
+
+    &.rightBtn {
+      right: -80px;
+    }
+  }
+}

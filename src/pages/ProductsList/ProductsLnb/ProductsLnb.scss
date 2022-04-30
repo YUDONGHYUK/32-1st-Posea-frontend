@@ -4,7 +4,7 @@
 .productsLnb {
   padding: 0 40px;
   font-size: 14px;
-  background-color: $backgroundLNB;
+  background-color: $backgroundDark;
 
   .productsLnbList {
     @include flexbox(flex-start);
