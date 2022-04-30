@@ -2,7 +2,7 @@ import React from 'react';
 import Checkboxes from '../Checkboxes/Checkboxes';
 import './FormLayout.scss';
 
-const FormLayout = ({ response, onChange, onBackBtnClick }) => {
+const FormLayout = ({ response, onChange, onBackBtnClick, errorMessage }) => {
   const { title, paragraph, inputs, btnContent, checkBoxes } = response;
 
   return (
@@ -10,22 +10,24 @@ const FormLayout = ({ response, onChange, onBackBtnClick }) => {
       <div className="modalText">
         <h2 className="modalTitle">{title}</h2>
         <p className="modalParagraph">{paragraph}</p>
+        <p className="modalErrorMsg">{errorMessage}</p>
       </div>
 
-      {inputs.map(({ type, name, placeholder }, index) => {
-        return (
-          <input
-            key={index}
-            className="modalInput"
-            type={type}
-            name={name}
-            placeholder={placeholder}
-            onChange={onChange}
-          />
-        );
-      })}
+      {inputs &&
+        inputs.map(({ type, name, placeholder }, index) => {
+          return (
+            <input
+              key={index}
+              className="modalInput"
+              type={type}
+              name={name}
+              placeholder={placeholder}
+              onChange={onChange}
+            />
+          );
+        })}
 
-      {inputs.length > 1 && (
+      {inputs && inputs.length > 1 && (
         <button type="button" className="backBtn" onClick={onBackBtnClick}>
           back
         </button>

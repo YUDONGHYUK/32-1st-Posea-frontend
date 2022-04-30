@@ -19,8 +19,13 @@
   }
 
   .modalParagraph {
+    margin-bottom: 30px;
     font-size: 17px;
     opacity: 0.4;
+  }
+
+  .modalErrorMsg {
+    color: #ea6956;
   }
 
   .modalInput {

@@ -3,13 +3,14 @@ import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT } from './RESPONSE_OBJECT';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
+import { SIGNUP_MESSAGE } from './SIGNUP_MESSAGE';
 
 const Login = () => {
   const navigate = useNavigate();
   const [openModalBtn, setOpenModalBtn] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [loggedUserName, setLoggedUserName] = useState('');
-  const [signUpError, setSignUpError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -31,6 +32,10 @@ const Login = () => {
   } = userInfo;
 
   const outModal = useRef();
+  const isValidEmail = email.includes('@') && email.includes('.');
+  const isValidPassword =
+    password.match(/[~!@#$%";'^,&*()_+|</>=>`?:{[\}]/g) && password.length >= 8;
+  const isInputEmpty = Object.values(userInfo).some(info => info === '');
 
   const exitBtnClick = () => {
     setOpenModalBtn(false);
@@ -39,6 +44,8 @@ const Login = () => {
   const outModalBtnClick = e => {
     if (outModal.current === e.target) {
       setOpenModalBtn(false);
+      setServerMessage('initial');
+      setErrorMessage('');
     }
   };
 
@@ -48,14 +55,8 @@ const Login = () => {
 
   const onBackBtnClick = () => {
     setServerMessage('initial');
+    setErrorMessage('');
   };
-
-  const errorMsgHandler = () => {
-    setSignUpError('');
-  };
-  // const isValidEmail = email.includes('@') && email.includes('.');
-  // const isValidPassword =
-  //   password.match(/[~!@#$%";'^,&*()_+|</>=>`?:{[\}]/g) && password.length >= 8;
 
   const onChange = e => {
     const { name, value, checked } = e.target;
@@ -73,6 +74,12 @@ const Login = () => {
     const btnText = RESPONSE_OBJECT[serverMessage].btnContent;
 
     if (btnText === '계속') {
+      if (!isValidEmail) {
+        setErrorMessage(SIGNUP_MESSAGE['invalidEmail']);
+        return;
+      }
+
+      setErrorMessage('');
       fetch('http://10.58.4.121:8000/users/check', {
         method: 'POST',
         body: JSON.stringify({
@@ -83,8 +90,14 @@ const Login = () => {
         .then(res => {
           setServerMessage(res.message);
         });
-      // .catch(e => console.log(e));
     } else if (btnText === '로그인') {
+      setErrorMessage('');
+
+      if (!isValidPassword) {
+        setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
+        return;
+      }
+
       fetch('http://10.58.4.121:8000/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -99,6 +112,26 @@ const Login = () => {
           setLoggedUserName(`${res.last_name}${res.first_name}`);
         });
     } else {
+      if (!isValidPassword) {
+        setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
+        return;
+      }
+
+      if (password !== passwordCheck) {
+        setErrorMessage(SIGNUP_MESSAGE['samePassword']);
+        return;
+      }
+
+      if (!(checkBox && checkBoxTwo)) {
+        setErrorMessage(SIGNUP_MESSAGE['invalidCheckBox']);
+        return;
+      }
+
+      if (isInputEmpty) {
+        setErrorMessage(SIGNUP_MESSAGE['fullInput']);
+        return;
+      }
+
       fetch('http://10.58.4.121:8000/users/signup', {
         method: 'POST',
         body: JSON.stringify({
@@ -110,8 +143,6 @@ const Login = () => {
       })
         .then(res => res.json())
         .then(res => setServerMessage(res.message));
-
-      //회원가입 성공 시 input,btn 에러날것임 조건부렌더링을 통해 해결하기
     }
   };
 
@@ -130,6 +161,7 @@ const Login = () => {
               response={RESPONSE_OBJECT[serverMessage]}
               onChange={onChange}
               onBackBtnClick={onBackBtnClick}
+              errorMessage={errorMessage}
             />
           </form>
         </div>
