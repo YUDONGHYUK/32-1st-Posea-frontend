@@ -44,28 +44,22 @@ const Cart = () => {
   };
 
   return (
-    <>
-      <div
-        className={`modal ${toggleModal ? 'active' : ''}`}
-        onClick={handleModal}
-      >
-        <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
-          <div className="cartContainer">
-            <CartItemHeader handleModal={handleModal} />
-            <CartItems
-              cartList={cartList}
-              handleAmount={handleAmount}
-              handleDelete={handleDelete}
-            />
-          </div>
-          <CartSummary totalPrice={totalPrice} />
-        </section>
-      </div>
-      {/* 테스트용 버튼 */}
-      <button className="modalBtn" onClick={handleModal}>
-        장바구니
-      </button>
-    </>
+    <div
+      className={`modal ${toggleModal ? 'active' : ''}`}
+      onClick={handleModal}
+    >
+      <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
+        <div className="cartContainer">
+          <CartItemHeader handleModal={handleModal} />
+          <CartItems
+            cartList={cartList}
+            handleAmount={handleAmount}
+            handleDelete={handleDelete}
+          />
+        </div>
+        <CartSummary totalPrice={totalPrice} />
+      </section>
+    </div>
   );
 };
 
