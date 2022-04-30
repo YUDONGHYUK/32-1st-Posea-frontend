@@ -31,7 +31,7 @@ const CartItem = ({
             삭제
           </button>
         </div>
-        <span className="cartItemAmountTotal">{price}</span>
+        <span className="cartItemAmountTotal">{price.toLocaleString()}</span>
       </div>
     </div>
   );

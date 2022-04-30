@@ -1,4 +1,4 @@
-const CART_LIST = [
+const CART_ITEMS = [
   {
     id: 1,
     name: '레저렉션 아로마틱 핸드 워시',
@@ -29,4 +29,4 @@ const CART_LIST = [
   },
 ];
 
-export { CART_LIST };
+export { CART_ITEMS };

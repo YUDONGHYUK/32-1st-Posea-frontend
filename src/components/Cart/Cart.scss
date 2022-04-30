@@ -1,11 +1,6 @@
 @import '../../styles/variables.scss';
-.modalBtn {
-  position: absolute;
-  bottom: 0;
-  color: tomato;
-}
 
-.modalWrapper {
+.modal {
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -19,6 +14,8 @@
 }
 
 .cartWrapper {
+  position: absolute;
+  width: 100%;
   padding: 40px;
   background-color: white;
   color: white;
@@ -34,73 +31,10 @@
     display: flex;
     flex-direction: column;
   }
+}
 
-  .cartItemsHeader {
-    display: flex;
-    padding: 15px 0;
-    border-bottom: 2px solid #3b3b3a;
-    color: $border;
-    font-size: 14px;
-
-    .itemHeaderCart {
-      width: 42%;
-    }
-
-    .itemHeaderSize {
-      width: 25%;
-    }
-
-    .itemHeaderAmountBox {
-      display: flex;
-      justify-content: space-between;
-      width: 33%;
-
-      button {
-        color: $border;
-        font-size: 24px;
-        transition: color 250ms ease-in;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
-  }
-
-  .cartSummary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    font-size: 14px;
-
-    .cartSummaryContainer {
-      width: 450px;
-      padding: 55px 0 20px 0;
-      color: $border;
-
-      .cartSummaryNotice {
-        display: block;
-        margin-bottom: 25px;
-      }
-
-      .cartSummaryItem {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 25px;
-
-        .cartSummarySubtotal {
-          font-size: 24px;
-        }
-      }
-
-      .cartSummaryPayBtn {
-        width: 100%;
-        padding: 21px 23px;
-        color: black;
-        background-color: $background;
-        font-size: 14px;
-      }
-    }
-  }
+.modalBtn {
+  position: absolute;
+  bottom: 0;
+  color: tomato;
 }
