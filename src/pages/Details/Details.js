@@ -50,17 +50,22 @@ const Details = () => {
             </p>
           </div>
 
-          <InfoRight productInfo={productInfo} />
+          <InfoRight
+            productInfo={productInfo}
+            onModalShowBtnClick={onModalShowBtnClick}
+          />
         </div>
 
         <div className="asideList">
           <div className="asideLeft">
-            <p>무료 선물 포장 서비스</p>
-            <p>주문하신 모든 제품에 대해 선물 포장 서비스를 제공해 드립니다</p>
+            <p className="asideTitle">무료 선물 포장 서비스</p>
+            <p className="asideContent">
+              주문하신 모든 제품에 대해 선물 포장 서비스를 제공해 드립니다
+            </p>
           </div>
           <div className="asideRight">
-            <p>샘플 &amp; 코튼 백 증정</p>
-            <p>
+            <p className="asideTitle">샘플 &amp; 코튼 백 증정</p>
+            <p className="asideContent">
               모든 주문 건에 무료 샘플과 코튼 백을 제공해 드립니다.(샘플 종류는
               임의지정이 불가합니다.)
             </p>
@@ -109,12 +114,14 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isModalShow={isModalShow}
-        onModalShowBtnClick={onModalShowBtnClick}
-        noShow={onModalExitBtnClick}
-        // isModalNoShow={isModalNoShow}
-      />
+      <div className="modalBox">
+        <Modal
+          isModalShow={isModalShow}
+          onModalShowBtnClick={onModalShowBtnClick}
+          noShow={onModalExitBtnClick}
+          // isModalNoShow={isModalNoShow}
+        />
+      </div>
     </>
   );
 };

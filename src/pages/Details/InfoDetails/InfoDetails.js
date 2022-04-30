@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InfoDetailsContent from '../InfoDetailsContent/InfoDetailsContent';
 
-const InfoDetails = ({ details }) => {
+const InfoDetails = ({ details, onModalShowBtnClick }) => {
   return (
     // <div className="information productInfo">
     //   <InfoDetailsContent />
@@ -14,6 +14,7 @@ const InfoDetails = ({ details }) => {
             key={detail.id}
             title={detail.title}
             desc={detail.desc}
+            onModalShowBtnClick={onModalShowBtnClick}
           />
         ))}
     </div>

@@ -16,8 +16,7 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
   // };
 
   return (
-    <>
-      <button onClick={onModalShowBtnClick}>뿅</button>
+    <div>
       <aside className={`modal ${isModalShow && 'modalActive'}`}>
         <div className="overlay" onClick={noShow} />
         <div className="modalAll">
@@ -38,7 +37,7 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
           </div>
         </div>
       </aside>
-    </>
+    </div>
   );
 };
 

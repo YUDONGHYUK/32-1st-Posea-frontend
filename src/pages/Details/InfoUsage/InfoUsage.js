@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InfoUsageContent from '../InfoUsageContent/InfoUsageContent';
 
-const InfoUsage = props => {
+const InfoUsage = () => {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
@@ -12,12 +12,8 @@ const InfoUsage = props => {
 
   return (
     <div className="information usageInfo">
-      {contents.map(content => (
-        <InfoUsageContent
-          key={content.id}
-          title={content.title}
-          desc={content.desc}
-        />
+      {contents.map(({ id, title, desc }) => (
+        <InfoUsageContent key={id} title={title} desc={desc} />
       ))}
     </div>
   );
