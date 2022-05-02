@@ -11,7 +11,7 @@ export const RESPONSE_OBJECT = {
     ],
     btnContent: '계속',
   },
-  Go_To_SignUp: {
+  SIGNUP: {
     title: '푀세아에 오신 것을 환영합니다.',
     paragraph: '회원가입을 위해 아래 세부 정보를 작성해주세요.',
     inputs: [
@@ -57,7 +57,7 @@ export const RESPONSE_OBJECT = {
       },
     ],
   },
-  Go_To_LogIn: {
+  LOGIN: {
     title: '푀세아에 다시 오신 것을 환영합니다.',
     paragraph: '패스워드를 입력해주세요.',
     inputs: [
