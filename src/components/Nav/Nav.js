@@ -8,7 +8,7 @@ const Nav = () => {
   });
   const [navListData, setNavListData] = useState([]);
   const [scrollY, setScrollY] = useState(0);
-  const [isScrollingUp, SetIsScrollingUp] = useState(true);
+  const [isScrollingUp, setIsScrollingUp] = useState(true);
 
   useEffect(() => {
     fetch('/data/navListData.json')
@@ -18,21 +18,17 @@ const Nav = () => {
       });
   }, []);
 
+  const detectScrollDirection = e => {
+    if (window.scrollY >= 80) {
+      e.deltaY > 0 ? setIsScrollingUp(false) : setIsScrollingUp(true);
+    }
+
+    setScrollY(window.scrollY);
+  };
+
   useEffect(() => {
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (scrollY >= 80) {
-        scrollY - currentScrollY > 0
-          ? SetIsScrollingUp(true)
-          : SetIsScrollingUp(false);
-      }
-
-      setScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', onScroll);
-  }, [scrollY]);
+    window.addEventListener('wheel', detectScrollDirection);
+  }, []);
 
   const { lastClickedMenu } = menuClicked;
 
