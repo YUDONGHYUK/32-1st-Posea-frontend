@@ -8,7 +8,11 @@ const CarouselItem = ({ product }) => {
   return (
     <li className="carouselItem">
       <Link to="/">
-        <img alt="d" src={imgSrc} className="carouselItemImg" />
+        <img
+          alt={`${title} 구매하러 가기`}
+          src={imgSrc}
+          className="carouselItemImg"
+        />
         <h4>{title}</h4>
         <div>
           <span>{size.length > 1 && `${size.length} 사이즈 / `}</span>
