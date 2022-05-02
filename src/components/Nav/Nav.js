@@ -18,6 +18,8 @@ const Nav = () => {
       });
   }, []);
 
+  const { lastClickedMenu } = menuClicked;
+
   const detectScrollDirection = e => {
     if (window.scrollY >= 80) {
       e.deltaY > 0 ? setIsScrollingUp(false) : setIsScrollingUp(true);
@@ -29,8 +31,6 @@ const Nav = () => {
   useEffect(() => {
     window.addEventListener('wheel', detectScrollDirection);
   }, []);
-
-  const { lastClickedMenu } = menuClicked;
 
   const onGnbButtonClick = e => {
     document.body.classList.add('stopScroll');
@@ -44,7 +44,7 @@ const Nav = () => {
     document.body.classList.remove('stopScroll');
 
     setMenuClicked({
-      lastClickedMenu: null,
+      lastClickedMenu: '',
     });
   };
 
