@@ -7,7 +7,6 @@ import Modal from './Modal/Modal';
 const Details = () => {
   const [productInfo, setProductInfo] = useState({});
   const [isModalShow, setIsModalShow] = useState(false);
-  // const [isModalNoShow, setModalNoShow] = useState(false);
 
   const onModalShowBtnClick = () => {
     setIsModalShow(true);
@@ -17,7 +16,7 @@ const Details = () => {
     console.log(123);
     setIsModalShow(false);
     // setModalNoShow(true); show, noshow 2개로 분리하지말고
-    // show하나로 true,false 값 줘서 하기
+    // show하나로 true,false 값 부여
   };
 
   useEffect(() => {
@@ -114,12 +113,12 @@ const Details = () => {
           </div>
         </div>
       </div>
+
       <div className="modalBox">
         <Modal
           isModalShow={isModalShow}
           onModalShowBtnClick={onModalShowBtnClick}
           noShow={onModalExitBtnClick}
-          // isModalNoShow={isModalNoShow}
         />
       </div>
     </>

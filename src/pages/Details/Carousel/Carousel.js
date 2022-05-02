@@ -3,7 +3,15 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function Slide() {
+export default function Carousel() {
+  const [carouselCon, setCarouselCon] = useState('');
+
+  useEffect(() => {
+    fetch('/data/carouselData.json')
+      .then(res => res.json())
+      .then(data => setCarouselCon(data));
+  }, []);
+
   return (
     (
       <img

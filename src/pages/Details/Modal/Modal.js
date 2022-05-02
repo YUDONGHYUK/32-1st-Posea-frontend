@@ -10,11 +10,6 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
       .then(data => setDetails(data));
   }, []);
 
-  // const onExitBtnClick = ({ isModalNoShow, setModalNoShow }) => {
-  //   setModalNoShow(true);
-  //   console.log('굿굿!');
-  // };
-
   return (
     <div>
       <aside className={`modal ${isModalShow && 'modalActive'}`}>
@@ -22,7 +17,7 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
         <div className="modalAll">
           <div className="modalWrapper">
             <button className="exitBtn" onClick={noShow}>
-              X
+              ✕
             </button>
             <h3 className="modalTitle">{details.title}</h3>
             <p className="modalIngredients">{details.ingredients}</p>

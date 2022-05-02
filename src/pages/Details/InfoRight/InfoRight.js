@@ -3,6 +3,7 @@ import InfoTitle from '../InfoTitle/InfoTitle';
 import InfoDetails from '../InfoDetails/InfoDetails';
 
 const InfoRight = ({ productInfo, onModalShowBtnClick }) => {
+  //구조분해 할당 필요
   return (
     <div className="InfoRight">
       <InfoTitle
