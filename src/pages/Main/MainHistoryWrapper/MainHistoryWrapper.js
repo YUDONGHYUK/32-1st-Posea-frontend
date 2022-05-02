@@ -9,8 +9,8 @@ const MainHistoryWrapper = () => (
         <SectionContext />
       </div>
       <div className="mainHistoryVideo">
-        <video width="100%" autoPlay muted>
-          <source src="https://www.aesop.com/u1nb1km7t5q7/3gl0yMLAvnHrdszAOQ7pi/f99c3eadf821ab099290ba8c00babf66/history-of-fragrance-video.mp4" />
+        <video width="100%" autoPlay muted loop>
+          <source src="images/mainVideo.mp4" />
         </video>
       </div>
     </div>
