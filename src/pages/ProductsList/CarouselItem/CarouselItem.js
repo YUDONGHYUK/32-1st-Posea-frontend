@@ -16,7 +16,10 @@ const CarouselItem = ({ product }) => {
         <h4>{title}</h4>
         <div>
           <span>{size.length > 1 && `${size.length} 사이즈 / `}</span>
-          <span>&#8361; {price.toLocaleString()} 원부터</span>
+          <span>
+            &#8361; {price.toLocaleString()} 원
+            {`${size.length > 1 ? '부터' : ''}`}
+          </span>
         </div>
       </Link>
     </li>
