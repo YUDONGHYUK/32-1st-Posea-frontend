@@ -1,12 +1,9 @@
 import React, { useState, useRef } from 'react';
 import FormLayout from './FormLayout/FormLayout';
-import { RESPONSE_OBJECT } from './RESPONSE_OBJECT';
-import { useNavigate } from 'react-router-dom';
+import { RESPONSE_OBJECT, SIGNUP_MESSAGE } from './userMessage';
 import './Login.scss';
-import { SIGNUP_MESSAGE } from './SIGNUP_MESSAGE';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [openModalBtn, setOpenModalBtn] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
   const [loggedUserName, setLoggedUserName] = useState('');
@@ -38,26 +35,41 @@ const Login = () => {
     password.length >= 8;
   const isInputEmpty = Object.values(userInfo).some(info => info === '');
 
+  const logout = () => {
+    const isLoggingOut = window.confirm('정말 로그아웃하실 것입니까?');
+    if (isLoggingOut) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('lastName', '');
+      localStorage.setItem('firstName', '');
+      setLoggedUserName('로그인');
+      setServerMessage('initial');
+    } else {
+      return;
+    }
+  };
+
+  const resetState = (modal, server, error) => {
+    modal && setOpenModalBtn(false);
+    server && setServerMessage('initial');
+    error && setErrorMessage('');
+  };
+
   const exitBtnClick = () => {
-    setOpenModalBtn(false);
-    setServerMessage('initial');
+    resetState(true, true, false);
   };
 
   const outModalBtnClick = e => {
     if (outModal.current === e.target) {
-      setOpenModalBtn(false);
-      setServerMessage('initial');
-      setErrorMessage('');
+      resetState(true, true, true);
     }
   };
 
-  const openModal = () => {
-    localStorage.getItem('token') ? navigate('/') : setOpenModalBtn(true);
+  const onBackBtnClick = () => {
+    resetState(false, true, true);
   };
 
-  const onBackBtnClick = () => {
-    setServerMessage('initial');
-    setErrorMessage('');
+  const openModal = () => {
+    localStorage.getItem('token') ? logout() : setOpenModalBtn(true);
   };
 
   const onChange = e => {
@@ -71,7 +83,67 @@ const Login = () => {
     });
   };
 
-  const postUserInfo = e => {
+  const checkEmail = () => {
+    fetch('http://10.58.0.93:8000/users/check', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        setServerMessage(res.message);
+        setErrorMessage('');
+      });
+  };
+
+  const isLogin = () => {
+    fetch('http://10.58.0.93:8000/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('lastName', res.last_name);
+        localStorage.setItem('firstName', res.first_name);
+        setOpenModalBtn(false);
+        setLoggedUserName(`${res.last_name} ${res.first_name}`);
+        setErrorMessage('');
+      });
+  };
+
+  const isSignUp = () => {
+    fetch('http://10.58.0.93:8000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        last_name: lastName,
+        first_name: firstName,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        setServerMessage(res.message);
+
+        setErrorMessage('');
+        setUserInfo({
+          email: '',
+          password: '',
+          passwordCheck: '',
+          lastName: '',
+          firstName: '',
+          checkBox: false,
+          checkBoxTwo: false,
+        });
+      });
+  };
+
+  const handleUserButton = e => {
     e.preventDefault();
     const btnText = RESPONSE_OBJECT[serverMessage].btnContent;
 
@@ -80,41 +152,15 @@ const Login = () => {
         setErrorMessage(SIGNUP_MESSAGE['invalidEmail']);
         return;
       }
-
-      setErrorMessage('');
-      fetch('http://10.58.4.121:8000/users/check', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: email,
-        }),
-      })
-        .then(res => res.json())
-        .then(res => {
-          setServerMessage(res.message);
-        });
+      checkEmail();
     } else if (btnText === '로그인') {
-      setErrorMessage('');
-
       if (!isValidPassword) {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
         return;
       }
-
-      fetch('http://10.58.4.121:8000/users/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      })
-        .then(res => res.json())
-        .then(res => {
-          localStorage.setItem('token', res.token);
-          setOpenModalBtn(false);
-          setLoggedUserName(`${res.last_name}${res.first_name}`);
-        });
+      isLogin();
     } else {
-      setErrorMessage('');
+      // 하나로 리팩토링 : 추후
 
       if (!isValidPassword) {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
@@ -136,29 +182,7 @@ const Login = () => {
         return;
       }
 
-      fetch('http://10.58.4.121:8000/users/signup', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          last_name: lastName,
-          first_name: firstName,
-        }),
-      })
-        .then(res => res.json())
-        .then(res => {
-          setServerMessage(res.message);
-
-          setUserInfo({
-            email: '',
-            password: '',
-            passwordCheck: '',
-            lastName: '',
-            firstName: '',
-            checkBox: false,
-            checkBoxTwo: false,
-          });
-        });
+      isSignUp();
     }
   };
 
@@ -169,7 +193,7 @@ const Login = () => {
       </button>
       {openModalBtn && (
         <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
-          <form className="modalBody" onSubmit={postUserInfo}>
+          <form className="modalBody" onSubmit={handleUserButton}>
             <button className="modalExit" type="button" onClick={exitBtnClick}>
               X
             </button>

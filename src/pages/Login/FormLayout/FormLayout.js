@@ -12,7 +12,6 @@ const FormLayout = ({ response, onChange, onBackBtnClick, errorMessage }) => {
         <p className="modalParagraph">{paragraph}</p>
         <p className="modalErrorMsg">{errorMessage}</p>
       </div>
-
       {inputs &&
         inputs.map(({ type, name, placeholder }, index) => {
           return (
@@ -26,15 +25,12 @@ const FormLayout = ({ response, onChange, onBackBtnClick, errorMessage }) => {
             />
           );
         })}
-
       {inputs && inputs.length > 1 && (
         <button type="button" className="backBtn" onClick={onBackBtnClick}>
           back
         </button>
       )}
-
       {checkBoxes && <Checkboxes onChange={onChange} />}
-
       {btnContent && (
         <button type="submit" className="continueBtn">
           {btnContent}
