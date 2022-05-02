@@ -48,6 +48,17 @@ const Nav = () => {
     });
   };
 
+  const checkGnbListClassNames = () => {
+    const classNames = [
+      'gnbList',
+      lastClickedMenu && 'isOpen',
+      isScrollingUp ? 'isScrollingUp' : 'navClose',
+      scrollY < 160 && 'isAtTop',
+    ];
+
+    return classNames.join(' ');
+  };
+
   return (
     <nav className="gnb">
       <h1 className="mainTitle">Pösea</h1>
@@ -55,11 +66,7 @@ const Nav = () => {
         {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
       </div>
 
-      <ul
-        className={`gnbList ${lastClickedMenu && 'isOpen'} ${
-          isScrollingUp ? 'isScrollingUp' : 'navClose'
-        } ${scrollY < 160 && 'isAtTop'}`}
-      >
+      <ul className={checkGnbListClassNames()}>
         {navListData &&
           navListData.map(navItem => (
             <GnbItem
