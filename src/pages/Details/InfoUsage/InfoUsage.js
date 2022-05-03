@@ -12,8 +12,11 @@ const InfoUsage = () => {
 
   return (
     <div className="information usageInfo">
-      {contents.map(({ id, title, desc }) => (
-        <InfoUsageContent key={id} title={title} desc={desc} />
+      {contents.map(({ title, desc }) => (
+        <div className="infoContent">
+          <h3 className="title">{title}</h3>
+          <p className="text">{desc}</p>
+        </div>
       ))}
     </div>
   );

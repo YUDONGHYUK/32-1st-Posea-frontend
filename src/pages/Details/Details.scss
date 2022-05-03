@@ -56,20 +56,20 @@
       }
 
       #explain {
-        // padding: 10px 65px;
-        // width: 100%;
+        padding: 10px 65px;
+        width: 100%;
         font-size: 13px;
         text-align: center;
         color: $primary;
       }
     }
 
-    .InfoRight {
+    .infoRight {
       @include column-flexbox(flex-start, space-evenly);
       width: 360px;
 
       .infoExplain {
-        margin: 10px 0px;
+        margin: 20px 0px;
         font-size: 14px;
         color: #333333;
       }
@@ -220,22 +220,4 @@
   }
 
   //carousel 함께 제품 추천
-
-  .wrapperCarousel {
-    // overflow: hidden;
-    .carousel {
-      // width: 120vw;
-
-      .carouselInner {
-        margin: 0px;
-        // width: 40vw;
-        // float: left;
-
-        img {
-          width: 400px;
-          margin: 0px;
-        }
-      }
-    }
-  }
 }

@@ -3,10 +3,26 @@ import './Details.scss';
 import InfoRight from './InfoRight/InfoRight';
 import InfoUsage from './InfoUsage/InfoUsage';
 import Modal from './Modal/Modal';
+import Carousel from './Carousel/Carousel';
 
 const Details = () => {
   const [productInfo, setProductInfo] = useState({});
   const [isModalShow, setIsModalShow] = useState(false);
+
+  useEffect(() => {
+    fetch('/data/productInfo.json')
+      .then(res => res.json())
+      .then(data => setProductInfo(data));
+  }, []);
+
+  // useEffect(() => {
+  //   fetch('http://10.58.0.93:8000/products/details/1')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data.results[0]);
+  //       setProductInfo(data);
+  //     });
+  // }, []);
 
   const onModalShowBtnClick = () => {
     setIsModalShow(true);
@@ -15,15 +31,7 @@ const Details = () => {
   const onModalExitBtnClick = () => {
     console.log(123);
     setIsModalShow(false);
-    // setModalNoShow(true); show, noshow 2개로 분리하지말고
-    // show하나로 true,false 값 부여
   };
-
-  useEffect(() => {
-    fetch('/data/productInfo.json')
-      .then(res => res.json())
-      .then(data => setProductInfo(data));
-  }, []);
 
   return (
     <>
@@ -87,29 +95,6 @@ const Details = () => {
               <hr />
             </div>
             <InfoUsage />
-          </div>
-        </div>
-
-        <div className="wrapperCarousel">
-          <div className="carousel">
-            <div className="carouselInner">
-              <img
-                alt="img1 "
-                src="https://www.aesop.com/u1nb1km7t5q7/3nkXHEw4CJAmlgugVWNv3j/6f3c490a7c6b92fc655aae093eb54c7c/Aesop-Skin-Purifying-Facial-Cream-Cleanser-100mL-large.png"
-              />
-            </div>
-            <div className="carouselInner">
-              <img
-                alt="img2 "
-                src="https://www.aesop.com/u1nb1km7t5q7/5f6C19Q6xLutRoJ1tvEYDF/c3632e644b1ce72b71b70d8d34abe57f/Aesop-Skin-Fabulous-Face-Cleanser-100mL-large.png"
-              />
-            </div>
-            <div className="carouselInner">
-              <img
-                alt="img3"
-                src="https://www.aesop.com/u1nb1km7t5q7/vj7h54KpQQ7ha4ZP68aYe/6bfa6f01d7b0e4558b82e23bd956891f/Aesop-Skin-Parsley-Seed-Facial-Cleansing-Oil-200mL-large.png"
-              />
-            </div>
           </div>
         </div>
       </div>

@@ -2,17 +2,19 @@ import React from 'react';
 import InfoTitle from '../InfoTitle/InfoTitle';
 import InfoDetails from '../InfoDetails/InfoDetails';
 
-const InfoRight = ({ productInfo, onModalShowBtnClick }) => {
+const InfoRight = ({
+  productInfo: { title, description, details },
+  onModalShowBtnClick,
+}) => {
+  // const { title, description, details } = productInfo;
+
   //구조분해 할당 필요
   return (
-    <div className="InfoRight">
-      <InfoTitle
-        infoName={productInfo.title}
-        infoExplain={productInfo.description}
-      />
+    <div className="infoRight">
+      <InfoTitle infoName={title} infoExplain={description} />
 
       <InfoDetails
-        details={productInfo.details}
+        details={details}
         onModalShowBtnClick={onModalShowBtnClick}
       />
 
