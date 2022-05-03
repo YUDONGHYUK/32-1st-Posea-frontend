@@ -39,6 +39,8 @@ const Login = () => {
     const isLoggingOut = window.confirm('정말 로그아웃하실 것입니까?');
     if (isLoggingOut) {
       localStorage.removeItem('token');
+      localStorage.removeItem('lastName');
+      localStorage.removeItem('firstName');
       setLoggedUserName('로그인');
       setServerMessage('initial');
     }
@@ -104,6 +106,8 @@ const Login = () => {
       .then(res => res.json())
       .then(res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('lastName', res.last_name);
+        localStorage.setItem('firstName', res.first_name);
         setOpenModalBtn(false);
         setLoggedUserName(`${res.last_name} ${res.first_name}`);
         setErrorMessage('');
@@ -177,6 +181,7 @@ const Login = () => {
       <button className="loginBtn" onClick={openModal}>
         {loggedUserName || '로그인'}
       </button>
+
       {openModalBtn && (
         <div className="modalOverlay" ref={outModal} onClick={outModalBtnClick}>
           <form className="modalBody" onSubmit={handleUserButton}>
