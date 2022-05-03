@@ -4,6 +4,7 @@
   position: fixed;
   visibility: hidden;
   transition: transform 500ms ease-in-out;
+  z-index: 9999;
 
   &.modalActive {
     position: fixed;

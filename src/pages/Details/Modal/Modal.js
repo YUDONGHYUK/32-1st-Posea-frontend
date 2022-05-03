@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.scss';
 
-const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
-  const [details, setDetails] = useState('');
-
-  useEffect(data => {
-    fetch('/data/modalInfo.json')
-      .then(res => res.json())
-      .then(data => setDetails(data));
-  }, []);
-
+const Modal = ({ isModalShow, onModalShowBtnClick, noShow, productInfo }) => {
   return (
     <div>
       <aside className={`modal ${isModalShow && 'modalActive'}`}>
@@ -19,8 +11,8 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow }) => {
             <button className="exitBtn" onClick={noShow}>
               ✕
             </button>
-            <h3 className="modalTitle">{details.title}</h3>
-            <p className="modalIngredients">{details.ingredients}</p>
+            <h3 className="modalTitle">성분</h3>
+            <p className="modalIngredients">{productInfo.detail_text}</p>
             <p className="modalDesc">
               성분 목록은 변경될 수 있습니다. 구매하신 제품에 대한 정확한 성분
               목록은, 사용 전 제품 라벨을 참조하시기 바랍니다.
