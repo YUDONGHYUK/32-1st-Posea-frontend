@@ -6,7 +6,9 @@ const GnbItemContent = ({ isClicked, list, imgSrc }) => {
   return (
     <div className={`gnbItemContent ${isClicked && 'isClicked'}`}>
       {list.map(({ id, list, title }) => {
-        return <GnbItemContentMenu key={id} list={list} title={title} />;
+        return (
+          <GnbItemContentMenu key={id} id={id} list={list} title={title} />
+        );
       })}
 
       <img
