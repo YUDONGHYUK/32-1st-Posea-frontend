@@ -39,8 +39,6 @@ const Login = () => {
     const isLoggingOut = window.confirm('정말 로그아웃하실 것입니까?');
     if (isLoggingOut) {
       localStorage.setItem('token', '');
-      localStorage.setItem('lastName', '');
-      localStorage.setItem('firstName', '');
       setLoggedUserName('로그인');
       setServerMessage('initial');
     } else {
@@ -114,8 +112,6 @@ const Login = () => {
       .then(res => res.json())
       .then(res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('lastName', res.last_name);
-        localStorage.setItem('firstName', res.first_name);
         setOpenModalBtn(false);
         setLoggedUserName(`${res.last_name} ${res.first_name}`);
         setErrorMessage('');
