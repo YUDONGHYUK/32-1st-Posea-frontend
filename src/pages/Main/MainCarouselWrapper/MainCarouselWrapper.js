@@ -10,8 +10,6 @@ const MainCarouselWrapper = ({ itemList }) => {
   const itemListRef = useRef();
   const paginationBarRef = useRef();
 
-  console.log(itemList);
-
   const moveCarouselLeft = () => {
     const itemListRec = itemListRef.current.getBoundingClientRect();
     const itemListX = itemListRec.x;
