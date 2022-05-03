@@ -1,8 +1,8 @@
 import React from 'react';
-// import CarouselItem from '../CarouselItem/CarouselItem';
+import CarouselItem from '../CarouselItem/CarouselItem';
 import './CarouselList.scss';
 
-const CarouselList = ({ list, carouselListRef }) => {
+const CarouselList = () => {
   return (
     // <ul className="carouselList" ref={carouselListRef}>
     //   {list.map(product => (

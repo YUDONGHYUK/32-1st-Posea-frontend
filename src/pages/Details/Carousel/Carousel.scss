@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+
+@import '../../../styles/mixins.scss';
+
+.wrapperCarousel {
+  .carouselView {
+    overflow: hidden;
+
+    .carousel {
+      // width: 120vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      .carouselInner {
+        margin: 0px;
+
+        transform: translateX(400px);
+        img {
+          width: 400px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
