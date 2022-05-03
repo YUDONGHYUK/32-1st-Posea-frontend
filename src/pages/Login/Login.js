@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT, SIGNUP_MESSAGE } from './userMessage';
 import './Login.scss';
@@ -47,6 +47,12 @@ const Login = () => {
       return;
     }
   };
+
+  useEffect(() => {
+    fetch('http://10.58.0.93:8000/products/details/1')
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }, []);
 
   const resetState = (modal, server, error) => {
     modal && setOpenModalBtn(false);
@@ -165,19 +171,13 @@ const Login = () => {
       if (!isValidPassword) {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
         return;
-      }
-
-      if (password !== passwordCheck) {
+      } else if (password !== passwordCheck) {
         setErrorMessage(SIGNUP_MESSAGE['samePassword']);
         return;
-      }
-
-      if (!(checkBox && checkBoxTwo)) {
+      } else if (!(checkBox && checkBoxTwo)) {
         setErrorMessage(SIGNUP_MESSAGE['invalidCheckBox']);
         return;
-      }
-
-      if (isInputEmpty) {
+      } else if (isInputEmpty) {
         setErrorMessage(SIGNUP_MESSAGE['fullInput']);
         return;
       }
