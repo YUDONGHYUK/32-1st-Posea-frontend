@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT, SIGNUP_MESSAGE } from './userMessage';
 import './Login.scss';
@@ -38,19 +38,11 @@ const Login = () => {
   const logout = () => {
     const isLoggingOut = window.confirm('정말 로그아웃하실 것입니까?');
     if (isLoggingOut) {
-      localStorage.setItem('token', '');
+      localStorage.removeItem('token');
       setLoggedUserName('로그인');
       setServerMessage('initial');
-    } else {
-      return;
     }
   };
-
-  useEffect(() => {
-    fetch('http://10.58.0.93:8000/products/details/1')
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, []);
 
   const resetState = (modal, server, error) => {
     modal && setOpenModalBtn(false);
@@ -88,7 +80,7 @@ const Login = () => {
   };
 
   const checkEmail = () => {
-    fetch('http://10.58.0.93:8000/users/check', {
+    fetch('http://10.58.0.92:8000/users/check', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -101,8 +93,8 @@ const Login = () => {
       });
   };
 
-  const isLogin = () => {
-    fetch('http://10.58.0.93:8000/users/login', {
+  const postUserLogin = () => {
+    fetch('http://10.58.0.92:8000/users/login', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -118,8 +110,8 @@ const Login = () => {
       });
   };
 
-  const isSignUp = () => {
-    fetch('http://10.58.0.93:8000/users/signup', {
+  const postUserSignUp = () => {
+    fetch('http://10.58.0.92:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -160,10 +152,8 @@ const Login = () => {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
         return;
       }
-      isLogin();
+      postUserLogin();
     } else {
-      // 하나로 리팩토링 : 추후
-
       if (!isValidPassword) {
         setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
         return;
@@ -178,7 +168,7 @@ const Login = () => {
         return;
       }
 
-      isSignUp();
+      postUserSignUp();
     }
   };
 
