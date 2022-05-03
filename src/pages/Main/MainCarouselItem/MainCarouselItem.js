@@ -1,11 +1,11 @@
 import React from 'react';
 import './MainCarouselItem.scss';
 
-const MainCarouselItem = ({ item: { img, name, description } }) => (
+const MainCarouselItem = ({ item: { product_images, name, skintype } }) => (
   <div className="carouselItemContainer">
-    <img className="carouselItemImg" alt="carouselItem" src={img} />
+    <img className="carouselItemImg" alt="carouselItem" src={product_images} />
     <span className="itemName">{name}</span>
-    <span className="itemDescription">{description}</span>
+    <span className="itemDescription">{skintype.join(', ')}</span>
   </div>
 );
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import MainCarouselItem from '../MainCarouselItem/MainCarouselItem';
 import './MainCarouselWrapper.scss';
 
@@ -6,16 +6,11 @@ const IMG_WIDTH = 400;
 const IMG_COUNT = 7;
 const SHOWN_IMAGE_NUMBER = 3;
 
-const MainCarouselWrapper = () => {
+const MainCarouselWrapper = ({ itemList }) => {
   const itemListRef = useRef();
   const paginationBarRef = useRef();
-  const [carouselData, setCarouselData] = useState([]);
 
-  useEffect(() => {
-    fetch('/data/main/CARAUSEL_DATA.json')
-      .then(res => res.json())
-      .then(data => setCarouselData(data));
-  }, []);
+  console.log(itemList);
 
   const moveCarouselLeft = () => {
     const itemListRec = itemListRef.current.getBoundingClientRect();
@@ -49,7 +44,7 @@ const MainCarouselWrapper = () => {
     <section className="mainCarouselWrapper">
       <div className="mainCarousel">
         <div ref={itemListRef} className="carouselItemList">
-          {carouselData.map(item => (
+          {itemList.map(item => (
             <MainCarouselItem key={item.id} item={item} />
           ))}
         </div>
