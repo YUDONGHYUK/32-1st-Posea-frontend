@@ -2,13 +2,13 @@
 @import '../../../styles/variables.scss';
 
 .gnbItemContent {
-  @include flexbox(space-evenly, flex-start);
+  @include flexbox(flex-start, flex-start);
   position: absolute;
   top: 80px;
   left: 0;
   width: 100%;
   height: calc(100vh - 80px);
-  padding: 90px calc(100% / 3 + 40px) 0 170px;
+  padding: 90px calc(100% / 3 + 40px) 0 300px;
   opacity: 0;
   visibility: hidden;
   transition: all 500ms ease-in-out;

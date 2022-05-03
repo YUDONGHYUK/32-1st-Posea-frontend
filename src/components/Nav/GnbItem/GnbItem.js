@@ -3,7 +3,7 @@ import GnbItemContent from '../GnbItemContent/GnbItemContent';
 import './GnbItem.scss';
 
 const GnbItem = ({ onGnbButtonClick, isClicked, item }) => {
-  const { name, title, list, imgSrc } = item;
+  const { name, title } = item;
 
   return (
     <li className="gnbItem">
@@ -15,7 +15,7 @@ const GnbItem = ({ onGnbButtonClick, isClicked, item }) => {
       >
         {title}
       </button>
-      <GnbItemContent isClicked={isClicked} list={list} imgSrc={imgSrc} />
+      <GnbItemContent item={item} isClicked={isClicked} />
     </li>
   );
 };
