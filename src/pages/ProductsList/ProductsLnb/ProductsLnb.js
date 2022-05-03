@@ -13,7 +13,9 @@ const ProductsLnb = ({ categoryTitle, categoryLink, subCategories }) => {
         {subCategories &&
           subCategories.map(({ id, link, title }) => (
             <li key={id} className="productsLnbItem">
-              <Link to={link}>{title}</Link>
+              <Link to={link}>
+                <span>{title}</span>
+              </Link>
             </li>
           ))}
       </ul>
