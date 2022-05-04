@@ -1,27 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './CarouselItem.scss';
 
 const CarouselItem = ({ product }) => {
-  const { imgSrc, title, size, price } = product;
+  const { id, product_name, product_images, product_size, product_price } =
+    product;
+
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/products/details/${id}`);
+  };
 
   return (
-    <li className="carouselItem">
-      <Link to="/">
+    <li className="carouselItem" onClick={onClick}>
+      <div className="carouselItemWrapper">
         <img
-          alt={`${title} 구매하러 가기`}
-          src={imgSrc}
+          alt={`${product_name} 구매하러 가기`}
+          src={product_images}
           className="carouselItemImg"
         />
-        <h4>{title}</h4>
+        <h4>{product_name}</h4>
         <div>
-          <span>{size.length > 1 && `${size.length} 사이즈 / `}</span>
           <span>
-            &#8361; {price.toLocaleString()} 원
-            {`${size.length > 1 ? '부터' : ''}`}
+            {product_size.length > 1 && `${product_size.length} 사이즈 / `}
+          </span>
+          <span>
+            &#8361; {parseInt(product_price[0]).toLocaleString()} 원
+            {`${product_size.length > 1 ? '부터' : ''}`}
           </span>
         </div>
-      </Link>
+      </div>
     </li>
   );
 };

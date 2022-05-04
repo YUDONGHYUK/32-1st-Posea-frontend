@@ -10,6 +10,7 @@
     @include flexbox(flex-start);
 
     .productsLnbItem {
+      padding: 40px 0;
       margin-right: 20px;
 
       &:first-child {
@@ -26,28 +27,24 @@
         }
       }
 
-      a {
-        display: block;
-        padding: 40px 0;
+      span {
+        position: relative;
+        cursor: pointer;
 
-        span {
-          position: relative;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: $primary;
+          transition: width 250ms ease-in-out;
+        }
 
-          &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: $primary;
-            transition: width 250ms ease-in-out;
-          }
-
-          &:hover::after {
-            width: 100%;
-          }
+        &:hover::after {
+          width: 100%;
         }
       }
     }

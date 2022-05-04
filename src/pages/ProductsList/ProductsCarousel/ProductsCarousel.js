@@ -7,17 +7,19 @@ import './ProductsCarousel.scss';
 const ProductsCarousel = ({ category }) => {
   const carouselListRef = useRef();
 
-  const { list } = category;
+  const { products } = category;
 
   return (
-    <section className="productsCarousel">
-      <CarouselIntro category={category} />
-      <CarouselList list={list} carouselListRef={carouselListRef} />
-      <CarouselBtns
-        carouselListRef={carouselListRef}
-        listLength={list.length}
-      />
-    </section>
+    category && (
+      <section className="productsCarousel">
+        <CarouselIntro category={category} />
+        <CarouselList list={products} carouselListRef={carouselListRef} />
+        <CarouselBtns
+          carouselListRef={carouselListRef}
+          listLength={products.length}
+        />
+      </section>
+    )
   );
 };
 

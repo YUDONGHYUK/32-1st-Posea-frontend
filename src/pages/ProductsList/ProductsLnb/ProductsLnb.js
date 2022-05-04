@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './ProductsLnb.scss';
 
-const ProductsLnb = ({ categoryTitle, categoryLink, subCategories }) => {
+const ProductsLnb = ({ categoryTitle, subCategories }) => {
   return (
     <nav className="productsLnb">
       <ul className="productsLnbList">
-        <li className="productsLnbItem">
-          <Link to={categoryLink}>모든 {categoryTitle}</Link>
-        </li>
+        <li className="productsLnbItem">모든 {categoryTitle}</li>
 
         {subCategories &&
-          subCategories.map(({ id, link, title }) => (
-            <li key={id} className="productsLnbItem">
-              <Link to={link}>
-                <span>{title}</span>
-              </Link>
-            </li>
-          ))}
+          subCategories.map(category => {
+            const { category_id, category_name } = category.categories;
+
+            return (
+              <li key={category_id} className="productsLnbItem">
+                <span>{category_name}</span>
+              </li>
+            );
+          })}
       </ul>
     </nav>
   );

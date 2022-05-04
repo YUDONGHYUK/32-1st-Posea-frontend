@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ProductsLnb from './ProductsLnb/ProductsLnb';
 import ProductsCarousel from './ProductsCarousel/ProductsCarousel';
 import './ProductsList.scss';
 
 const ProductsList = () => {
-  const [productsData, setProductsData] = useState({});
+  const [productsData, setProductsData] = useState([]);
 
-  const { title, link, subCategories } = productsData;
+  const location = useLocation();
 
   useEffect(() => {
-    fetch('/data/productsListData.json')
+    fetch(`http://10.58.0.92:8000/products/list${location.search}`)
       .then(res => res.json())
-      .then(data => setProductsData(data));
-  }, []);
+      .then(data => setProductsData(data.result));
+  }, [location.search]);
 
   return (
-    <div className="productsList">
-      <h2 className="productsTitle">{title}</h2>
+    productsData[0] && (
+      <div className="productsList">
+        <h2 className="productsTitle">{productsData[0].main_category_name}</h2>
 
-      {subCategories && (
-        <>
-          <ProductsLnb
-            categoryTitle={title}
-            categoryLink={link}
-            subCategories={subCategories}
-          />
+        <ProductsLnb
+          categoryTitle={productsData[0].main_category_name}
+          subCategories={productsData}
+        />
 
-          {subCategories.map(category => (
-            <ProductsCarousel key={category.id} category={category} />
-          ))}
-        </>
-      )}
-    </div>
+        {productsData.map(category => (
+          <ProductsCarousel key={category.id} category={category} />
+        ))}
+      </div>
+    )
   );
 };
 
