@@ -4,6 +4,7 @@ import Main from './pages/Main/Main';
 import ProductsList from './pages/ProductsList/ProductsList';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
+import Details from './pages/Details/Details';
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/products/details/:id" element={<Details />} />
         <Route path="/products/list" element={<ProductsList />} />
       </Routes>
       <Footer />
