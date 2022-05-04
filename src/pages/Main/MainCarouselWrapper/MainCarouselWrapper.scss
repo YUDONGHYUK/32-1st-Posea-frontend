@@ -1,0 +1,95 @@
+@import '../../../styles/variables.scss';
+
+.mainCarouselWrapper {
+  padding-top: 120px;
+  padding-bottom: 50px;
+
+  .mainCarousel {
+    position: relative;
+    height: 550px;
+    overflow-x: hidden;
+  }
+
+  .carouselItemList {
+    display: flex;
+    padding-left: 80px;
+    transition: transform 250ms ease-in;
+
+    &:hover ~ .carouselBtns {
+      .left {
+        transform: translateX(100%);
+      }
+
+      .right {
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  .carouselItemContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+    height: 100%;
+  }
+
+  .carouselItemImg {
+    width: 410px;
+    height: 400px;
+  }
+
+  .itemName {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .itemDescription {
+    font-size: 14px;
+    margin-bottom: 60px;
+  }
+
+  .carouselPaginationBar {
+    width: calc(100% - 160px);
+    height: 2px;
+    margin-left: 80px;
+    margin-bottom: 40px;
+    background-color: $border;
+
+    .carouselInnerPaginationBar {
+      width: 20%;
+      height: 2px;
+      background-color: #52514e;
+      transition: transform 250ms ease-in;
+    }
+  }
+
+  .carouselBtn {
+    position: absolute;
+    top: 160px;
+    width: 80px;
+    height: 80px;
+    font-size: 18px;
+    color: white;
+    background-color: $secondary;
+    transition: transform 250ms ease-in;
+
+    &.left {
+      left: -80px;
+    }
+
+    &.right {
+      right: -80px;
+    }
+  }
+
+  .carouselBtns:hover {
+    .left {
+      transform: translateX(100%);
+    }
+
+    .right {
+      transform: translateX(-100%);
+    }
+  }
+}

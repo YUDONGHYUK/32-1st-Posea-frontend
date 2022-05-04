@@ -1,0 +1,8 @@
+@import '../../../styles/mixins.scss';
+
+.carouselList {
+  @include flexbox(flex-start);
+  width: 75vw;
+  transition: transform 350ms ease-in-out;
+  z-index: 10;
+}

@@ -1,0 +1,13 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.productsList {
+  padding-top: 280px;
+  background-color: $background;
+
+  .productsTitle {
+    padding-left: 40px;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+}

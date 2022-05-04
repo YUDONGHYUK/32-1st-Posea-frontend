@@ -2,7 +2,7 @@ import React from 'react';
 import GnbItemContentMenu from '../GnbItemContentMenu/GnbItemContentMenu';
 import './GnbItemContent.scss';
 
-const GnbItemContent = ({ item, isClicked }) => {
+const GnbItemContent = ({ item, isClicked, onGnbCloseButtonClick }) => {
   const { title, list, imgSrc } = item;
 
   return (
@@ -17,15 +17,12 @@ const GnbItemContent = ({ item, isClicked }) => {
             list={list}
             title={title}
             link={item.id}
+            onGnbCloseButtonClick={onGnbCloseButtonClick}
           />
         );
       })}
 
-      <img
-        alt="cover of Skin Care"
-        src={imgSrc}
-        className="gnbItemContentCover"
-      />
+      <img alt={`${title}`} src={imgSrc} className="gnbItemContentCover" />
     </div>
   );
 };
