@@ -1,0 +1,13 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.gnbItem {
+  display: flex;
+  margin-right: 16px;
+
+  .gnbItemTitle {
+    height: 80px;
+    font-size: 14px;
+    color: $background;
+  }
+}
