@@ -12,10 +12,7 @@ const MainReleaseWrapper = () => (
           src="images/mainRelease.jpg"
         />
       </div>
-
-      {/* <div className="mainReleaseContent"> */}
       <SectionContext />
-      {/* </div> */}
     </div>
   </section>
 );
