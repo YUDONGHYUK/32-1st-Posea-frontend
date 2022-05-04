@@ -6,25 +6,20 @@
   background-color: $background;
   position: relative;
 
-  .leftBtn {
+  .leftBtn,
+  .rightBtn {
     position: absolute;
-    top: 450px;
-    z-index: 10;
+    top: 50%;
     width: 70px;
     height: 70px;
     background-color: $primary;
-    color: white;
+    color: $background;
+    z-index: 10;
+    transform: translateY(-50%);
   }
 
   .rightBtn {
-    position: absolute;
-    z-index: 10;
-    top: 450px;
     right: 0px;
-    width: 70px;
-    height: 70px;
-    background-color: $primary;
-    color: white;
   }
 
   .carouselView {
