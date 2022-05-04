@@ -75,29 +75,34 @@ const Nav = () => {
       </div>
 
       <ul className={checkGnbListClassNames()}>
-        {navListData &&
-          navListData.map(navItem => (
-            <GnbItem
-              key={navItem.id}
-              onGnbButtonClick={onGnbButtonClick}
-              onGnbCloseButtonClick={onGnbCloseButtonClick}
-              isClicked={lastClickedMenu === navItem.name}
-              item={navItem}
-            />
-          ))}
+        <li className="gnbItems">
+          {navListData &&
+            navListData.map(navItem => (
+              <GnbItem
+                key={navItem.id}
+                onGnbButtonClick={onGnbButtonClick}
+                onGnbCloseButtonClick={onGnbCloseButtonClick}
+                isClicked={lastClickedMenu === navItem.name}
+                item={navItem}
+              />
+            ))}
 
-        {lastClickedMenu && (
-          <li className="gnbItem">
-            <button
-              className="gnbItemTitle"
-              type="button"
-              onClick={onGnbCloseButtonClick}
-            >
-              닫기
-            </button>
-          </li>
-        )}
-        <Login />
+          {lastClickedMenu && (
+            <li className="gnbItem">
+              <button
+                className="gnbItemTitle"
+                type="button"
+                onClick={onGnbCloseButtonClick}
+              >
+                닫기
+              </button>
+            </li>
+          )}
+        </li>
+
+        <li className="gnbItem">
+          <Login />
+        </li>
       </ul>
     </nav>
   );

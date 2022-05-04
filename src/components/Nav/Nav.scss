@@ -51,6 +51,7 @@
 .gnb {
   @include flexbox(space-between);
 
+  height: 80px;
   color: $primary;
 
   .mainTitle,
@@ -67,7 +68,7 @@
   }
 
   .gnbList {
-    @include flexbox(flex-start, flex-start);
+    @include flexbox(space-between, center);
 
     position: fixed;
     top: 0;
@@ -90,7 +91,8 @@
       background-color: $primary;
       border-bottom: none;
 
-      .gnbItemTitle {
+      .gnbItemTitle,
+      button {
         color: $background;
       }
     }
@@ -98,9 +100,14 @@
     &.isOpen {
       background-color: $background;
 
-      .gnbItemTitle {
+      .gnbItemTitle,
+      button {
         color: $primary;
       }
+    }
+
+    .gnbItems {
+      @include flexbox(flex-start, flex-start);
     }
   }
 }
