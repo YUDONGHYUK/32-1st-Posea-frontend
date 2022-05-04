@@ -6,7 +6,6 @@ import './Login.scss';
 const Login = () => {
   const [openModalBtn, setOpenModalBtn] = useState(false);
   const [serverMessage, setServerMessage] = useState('initial');
-  const [loggedUserName, setLoggedUserName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -41,7 +40,6 @@ const Login = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('lastName');
       localStorage.removeItem('firstName');
-      setLoggedUserName('로그인');
       setServerMessage('initial');
     }
   };
@@ -109,7 +107,6 @@ const Login = () => {
         localStorage.setItem('lastName', res.last_name);
         localStorage.setItem('firstName', res.first_name);
         setOpenModalBtn(false);
-        setLoggedUserName(`${res.last_name} ${res.first_name}`);
         setErrorMessage('');
       });
   };
@@ -179,7 +176,9 @@ const Login = () => {
   return (
     <>
       <button className="loginBtn" onClick={openModal}>
-        {loggedUserName || '로그인'}
+        {localStorage.getItem('token')
+          ? localStorage.getItem('lastName') + localStorage.getItem('firstName')
+          : '로그인'}
       </button>
 
       {openModalBtn && (
