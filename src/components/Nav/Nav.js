@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GnbItem from './GnbItem/GnbItem';
+import Login from '../../pages/Login/Login';
 import './Nav.scss';
 
 const Nav = () => {
@@ -88,6 +89,7 @@ const Nav = () => {
             </button>
           </li>
         )}
+        <Login />
       </ul>
     </nav>
   );
