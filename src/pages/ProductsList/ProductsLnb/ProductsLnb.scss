@@ -1,0 +1,52 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.productsLnb {
+  padding: 0 40px;
+  font-size: 14px;
+  background-color: $backgroundDark;
+
+  .productsLnbList {
+    @include flexbox(flex-start);
+
+    .productsLnbItem {
+      padding: 40px 0;
+      margin-right: 20px;
+
+      &:first-child {
+        display: flex;
+        align-items: center;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 1px;
+          height: 14px;
+          margin-left: 20px;
+          background-color: $primary;
+        }
+      }
+
+      span {
+        position: relative;
+        cursor: pointer;
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: $primary;
+          transition: width 250ms ease-in-out;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

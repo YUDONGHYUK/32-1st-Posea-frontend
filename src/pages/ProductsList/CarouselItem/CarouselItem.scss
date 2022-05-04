@@ -1,0 +1,27 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.carouselItem {
+  width: calc(75vw / 3);
+  height: 530px;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  .carouselItemWrapper {
+    @include column-flexbox(flex-end);
+
+    height: 100%;
+    padding: 40px 20px 80px;
+    transition: background-color 200ms ease-in-out;
+
+    &:hover {
+      background-color: $productListHoverLight;
+    }
+  }
+
+  .carouselItemImg {
+    display: block;
+    width: 290px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,22 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.productsCarousel {
+  @include flexbox(flex-start);
+
+  width: 100%;
+  background-color: $background;
+  overflow: hidden;
+
+  &:nth-child(even) {
+    background-color: $backgroundDark;
+
+    .carouselItem {
+      a {
+        &:hover {
+          background-color: $productListHoverDark;
+        }
+      }
+    }
+  }
+}
