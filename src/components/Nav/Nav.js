@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import GnbItem from './GnbItem/GnbItem';
 import './Nav.scss';
 
@@ -61,9 +62,15 @@ const Nav = () => {
 
   return (
     <nav className="gnb">
-      <h1 className="mainTitle">Pösea</h1>
+      <Link to="/">
+        <h1 className="mainTitle">Pösea</h1>
+      </Link>
       <div className={`gnbItemBG ${lastClickedMenu}`}>
-        {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
+        {lastClickedMenu && (
+          <Link to="/">
+            <h1 className="menuTitle">Pösea</h1>
+          </Link>
+        )}
       </div>
 
       <ul className={checkGnbListClassNames()}>
