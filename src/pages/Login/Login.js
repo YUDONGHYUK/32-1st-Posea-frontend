@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT, SIGNUP_MESSAGE } from './userMessage';
 import './Login.scss';
@@ -33,6 +33,21 @@ const Login = () => {
     password.match(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g) &&
     password.length >= 8;
   const isInputEmpty = Object.values(userInfo).some(info => info === '');
+
+  useEffect(() => {
+    if (!openModalBtn) return;
+
+    document.body.style.cssText = `
+      position: fixed;
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = '';
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+    };
+  }, [openModalBtn]);
 
   const logout = () => {
     const isLoggingOut = window.confirm('정말 로그아웃하실 것입니까?');
