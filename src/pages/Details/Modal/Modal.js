@@ -29,6 +29,3 @@ const Modal = ({ isModalShow, onModalShowBtnClick, noShow, productInfo }) => {
 };
 
 export default Modal;
-
-// 클릭하면 배경 opacity
-// 모달창

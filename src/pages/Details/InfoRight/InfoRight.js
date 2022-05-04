@@ -13,15 +13,6 @@ const InfoRight = ({ productInfo, onModalShowBtnClick }) => {
         productInfo={productInfo}
         onModalShowBtnClick={onModalShowBtnClick}
       />
-
-      {/* <InfoDetails
-        details={details}
-        onModalShowBtnClick={onModalShowBtnClick}
-      /> */}
-
-      {/* <button className="btn">
-        카트에 추가하기 - <span>₩27,000</span>
-      </button> */}
     </div>
   );
 };

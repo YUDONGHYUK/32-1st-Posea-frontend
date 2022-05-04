@@ -1,17 +1,14 @@
-// 1. 캐러셀 리스트 위치(carousel) 알려주기
-// 2. 캐러셀 리스트 감싸는 div(wrapperCarousel)에 overflow hidden 주기
-
 import React, { useState, useRef, useEffect } from 'react';
 import './Carousel.scss';
 
-export default function Carousel() {
+const Carousel = ({ isViewMove }) => {
   const [slideState, setSlideState] = useState(0);
-  const maxSlides = 3;
-
+  const IMG_MAX = 3;
+  const IMG_WIDTH = 400;
   const slideRef = useRef();
 
   const handleRight = () => {
-    if (slideState >= maxSlides) {
+    if (slideState >= IMG_MAX) {
       setSlideState(0);
     } else {
       setSlideState(slideState + 1);
@@ -20,7 +17,7 @@ export default function Carousel() {
 
   const handleLeft = () => {
     if (slideState === 0) {
-      setSlideState(maxSlides);
+      setSlideState(IMG_MAX);
     } else {
       setSlideState(slideState - 1);
     }
@@ -28,51 +25,67 @@ export default function Carousel() {
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transition = `translateX(-${slideState}00%)`;
+    slideRef.current.style.transform = `translateX(-${slideState * 427}px)`;
   }, [slideState]);
 
   return (
     <div className="wrapperCarousel">
-      <button onClick={handleRight} className="rightBtn">
-        ◁
-      </button>
       <button onClick={handleLeft} className="leftBtn">
-        ▷
+        ◀︎
+      </button>
+      <button onClick={handleRight} className="rightBtn">
+        ►
       </button>
       <div className="carouselView">
-        <div className="carousel" ref={slideRef}>
+        <div
+          className={`carouselImgs ${isViewMove && 'carouselMove'}`}
+          ref={slideRef}
+        >
+          <div className="imgsTitle">함께 사용하기 좋은 제품</div>
           <div className="carouselInner">
             <img
               alt="img1 "
-              src="https://www.aesop.com/u1nb1km7t5q7/3nkXHEw4CJAmlgugVWNv3j/6f3c490a7c6b92fc655aae093eb54c7c/Aesop-Skin-Purifying-Facial-Cream-Cleanser-100mL-large.png"
+              src="https://user-images.githubusercontent.com/100352385/166410547-4af69562-e739-4488-a21d-c34345a23cd5.png"
             />
+            <p className="carouselInnerTitle">파슬리 씨드 페이셜 클렌징 오일</p>
+            <p className="carouselInnerDesc">특히 건성,민감성 피부에 이상적</p>
           </div>
           <div className="carouselInner">
             <img
               alt="img2 "
-              src="https://www.aesop.com/u1nb1km7t5q7/5f6C19Q6xLutRoJ1tvEYDF/c3632e644b1ce72b71b70d8d34abe57f/Aesop-Skin-Fabulous-Face-Cleanser-100mL-large.png"
+              src="https://user-images.githubusercontent.com/100352385/166410534-c10721cc-4f9e-4c79-aca4-5be6845abf02.png"
             />
+            <p className="carouselInnerTitle">파슬리 씨드 페이셜 클렌징 오일</p>
+            <p className="carouselInnerDesc">특히 건성,민감성 피부에 이상적</p>
           </div>
           <div className="carouselInner">
             <img
               alt="img3"
-              src="https://www.aesop.com/u1nb1km7t5q7/vj7h54KpQQ7ha4ZP68aYe/6bfa6f01d7b0e4558b82e23bd956891f/Aesop-Skin-Parsley-Seed-Facial-Cleansing-Oil-200mL-large.png"
+              src="https://user-images.githubusercontent.com/100352385/166410538-f5e544e3-9f68-4324-9e38-ed4284ab68c9.png"
             />
+            <p className="carouselInnerTitle">파슬리 씨드 페이셜 클렌징 오일</p>
+            <p className="carouselInnerDesc">특히 건성,민감성 피부에 이상적</p>
           </div>
           <div className="carouselInner">
             <img
-              alt="img3"
-              src="https://www.aesop.com/u1nb1km7t5q7/vj7h54KpQQ7ha4ZP68aYe/6bfa6f01d7b0e4558b82e23bd956891f/Aesop-Skin-Parsley-Seed-Facial-Cleansing-Oil-200mL-large.png"
+              alt="img4"
+              src="https://user-images.githubusercontent.com/100352385/166410539-84830714-8dbf-4dce-902c-1140fa565973.png"
             />
+            <p className="carouselInnerTitle">파슬리 씨드 페이셜 클렌징 오일</p>
+            <p className="carouselInnerDesc">특히 건성,민감성 피부에 이상적</p>
           </div>
           <div className="carouselInner">
             <img
-              alt="img3"
-              src="https://www.aesop.com/u1nb1km7t5q7/vj7h54KpQQ7ha4ZP68aYe/6bfa6f01d7b0e4558b82e23bd956891f/Aesop-Skin-Parsley-Seed-Facial-Cleansing-Oil-200mL-large.png"
+              alt="img5"
+              src="https://user-images.githubusercontent.com/100352385/166410540-113a921f-0623-4982-a292-34c51e1bf4ac.png"
             />
+            <p className="carouselInnerTitle">파슬리 씨드 페이셜 클렌징 오일</p>
+            <p className="carouselInnerDesc">특히 건성,민감성 피부에 이상적</p>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Carousel;

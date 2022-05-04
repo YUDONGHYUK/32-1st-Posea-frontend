@@ -1,24 +1,80 @@
 @import '../../../styles/variables.scss';
-
 @import '../../../styles/mixins.scss';
 
 .wrapperCarousel {
-  .carouselView {
-    overflow: hidden;
+  padding: 150px 0px;
+  background-color: $background;
+  position: relative;
 
-    .carousel {
-      // width: 120vw;
+  .leftBtn {
+    position: absolute;
+    top: 450px;
+    z-index: 10;
+    width: 70px;
+    height: 70px;
+    background-color: $primary;
+    color: white;
+  }
+
+  .rightBtn {
+    position: absolute;
+    z-index: 10;
+    top: 450px;
+    right: 0px;
+    width: 70px;
+    height: 70px;
+    background-color: $primary;
+    color: white;
+  }
+
+  .carouselView {
+    overflow-x: hidden;
+    transition: transform 0.5s;
+
+    .carouselImgs {
+      padding: 50px 0px;
+      width: max-content;
       display: flex;
-      flex-direction: row;
-      justify-content: space-around;
+
+      &.carouselMove {
+        .leftBtn {
+          transform: translateX(-460px);
+        }
+
+        .rightBtn {
+          transform: translateX(+460px);
+        }
+      }
+
+      .imgsTitle {
+        text-align: center;
+        padding-top: 10px;
+        margin: 0px 20px;
+        width: 370px;
+        height: 440px;
+        font-size: 30px;
+        color: #333333;
+      }
 
       .carouselInner {
-        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0px 20px;
 
-        transform: translateX(400px);
         img {
-          width: 400px;
+          width: 370px;
           margin: 0px;
+          margin: 0px 25px;
+        }
+        .carouselInnerTitle {
+          padding: 10px 0px;
+          font-size: 14px;
+        }
+        .carouselInnerDesc {
+          padding: 10px 0px;
+          font-size: 14px;
         }
       }
     }

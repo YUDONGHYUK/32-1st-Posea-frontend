@@ -5,10 +5,6 @@ const InfoDetails = ({ productInfo, onModalShowBtnClick }) => {
   const { skintype, sense, ingredient_name, size, price } = productInfo;
 
   return (
-    // <div className="information productInfo">
-    //   <InfoDetailsContent />
-    // </div>
-
     <div className="information productInfo">
       <InfoDetailsContent
         title={'피부 타입'}

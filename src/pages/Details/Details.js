@@ -4,18 +4,19 @@ import InfoRight from './InfoRight/InfoRight';
 import InfoUsage from './InfoUsage/InfoUsage';
 import Modal from './Modal/Modal';
 import Carousel from './Carousel/Carousel';
+import { useParams } from 'react-router-dom';
 
 const Details = () => {
   const [productInfo, setProductInfo] = useState({});
   const [isModalShow, setIsModalShow] = useState(false);
+  const [isViewMove, setIsViewMove] = useState(0);
+
+  const params = useParams();
 
   useEffect(() => {
-    fetch('http://10.58.0.92:8000/products/details/1')
+    fetch(`http://10.58.0.92:8000/products/details/${params.id}`)
       .then(res => res.json())
-      .then(data => {
-        console.log(data.results[0]);
-        setProductInfo(data.results[0]);
-      });
+      .then(data => setProductInfo(data.results[0]));
   }, []);
 
   document.body.style.overflow = isModalShow ? 'hidden' : 'unset';
@@ -26,6 +27,14 @@ const Details = () => {
 
   const onModalExitBtnClick = () => {
     setIsModalShow(false);
+  };
+
+  const handleLeft = () => {
+    setIsViewMove(true);
+  };
+
+  const handleRight = () => {
+    setIsViewMove(true);
   };
 
   return (
@@ -92,6 +101,12 @@ const Details = () => {
           productInfo={productInfo}
         />
       </div>
+
+      <Carousel
+        isViewMove={isViewMove}
+        handleLeft={handleLeft}
+        handleRight={handleRight}
+      />
     </>
   );
 };
