@@ -13,7 +13,19 @@
   width: 100%;
   height: 100vh;
   background-color: transparent;
-  transition: top 0.2s ease-in-out, background-color 500ms ease-in;
+  transition: all 250ms ease;
+  opacity: 0;
+  visibility: hidden;
+
+  &.skinCare,
+  &.bodyHand,
+  &.hair,
+  &.perfume,
+  &.home {
+    z-index: 40;
+    opacity: 1;
+    visibility: unset;
+  }
 
   &.skinCare {
     background-color: $navSkin;
@@ -39,6 +51,7 @@
 .gnb {
   @include flexbox(space-between);
 
+  height: 80px;
   color: $primary;
 
   .mainTitle,
@@ -55,7 +68,7 @@
   }
 
   .gnbList {
-    @include flexbox(flex-start, flex-start);
+    @include flexbox(space-between, center);
 
     position: fixed;
     top: 0;
@@ -63,7 +76,7 @@
     padding: 0 40px;
     background-color: $background;
     border-bottom: 1px solid $border;
-    z-index: 20;
+    z-index: 50;
     transition: all 250ms ease-in;
 
     .gnbItemTitle {
@@ -78,7 +91,8 @@
       background-color: $primary;
       border-bottom: none;
 
-      .gnbItemTitle {
+      .gnbItemTitle,
+      button {
         color: $background;
       }
     }
@@ -86,9 +100,14 @@
     &.isOpen {
       background-color: $background;
 
-      .gnbItemTitle {
+      .gnbItemTitle,
+      button {
         color: $primary;
       }
+    }
+
+    .gnbItems {
+      @include flexbox(flex-start, flex-start);
     }
   }
 }
