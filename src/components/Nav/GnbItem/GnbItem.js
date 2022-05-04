@@ -2,7 +2,12 @@ import React from 'react';
 import GnbItemContent from '../GnbItemContent/GnbItemContent';
 import './GnbItem.scss';
 
-const GnbItem = ({ onGnbButtonClick, isClicked, item }) => {
+const GnbItem = ({
+  onGnbButtonClick,
+  onGnbCloseButtonClick,
+  isClicked,
+  item,
+}) => {
   const { name, title } = item;
 
   return (
@@ -15,7 +20,11 @@ const GnbItem = ({ onGnbButtonClick, isClicked, item }) => {
       >
         {title}
       </button>
-      <GnbItemContent item={item} isClicked={isClicked} />
+      <GnbItemContent
+        item={item}
+        isClicked={isClicked}
+        onGnbCloseButtonClick={onGnbCloseButtonClick}
+      />
     </li>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import GnbItem from './GnbItem/GnbItem';
 import Login from '../../pages/Login/Login';
 import './Nav.scss';
@@ -62,34 +63,46 @@ const Nav = () => {
 
   return (
     <nav className="gnb">
-      <h1 className="mainTitle">Pösea</h1>
+      <Link to="/">
+        <h1 className="mainTitle">Pösea</h1>
+      </Link>
       <div className={`gnbItemBG ${lastClickedMenu}`}>
-        {lastClickedMenu && <h1 className="menuTitle">Pösea</h1>}
+        {lastClickedMenu && (
+          <Link to="/">
+            <h1 className="menuTitle">Pösea</h1>
+          </Link>
+        )}
       </div>
 
       <ul className={checkGnbListClassNames()}>
-        {navListData &&
-          navListData.map(navItem => (
-            <GnbItem
-              key={navItem.id}
-              onGnbButtonClick={onGnbButtonClick}
-              isClicked={lastClickedMenu === navItem.name}
-              item={navItem}
-            />
-          ))}
+        <li className="gnbItems">
+          {navListData &&
+            navListData.map(navItem => (
+              <GnbItem
+                key={navItem.id}
+                onGnbButtonClick={onGnbButtonClick}
+                onGnbCloseButtonClick={onGnbCloseButtonClick}
+                isClicked={lastClickedMenu === navItem.name}
+                item={navItem}
+              />
+            ))}
 
-        {lastClickedMenu && (
-          <li className="gnbItem">
-            <button
-              className="gnbItemTitle"
-              type="button"
-              onClick={onGnbCloseButtonClick}
-            >
-              닫기
-            </button>
-          </li>
-        )}
-        <Login />
+          {lastClickedMenu && (
+            <li className="gnbItem">
+              <button
+                className="gnbItemTitle"
+                type="button"
+                onClick={onGnbCloseButtonClick}
+              >
+                닫기
+              </button>
+            </li>
+          )}
+        </li>
+
+        <li className="gnbItem">
+          <Login />
+        </li>
       </ul>
     </nav>
   );
