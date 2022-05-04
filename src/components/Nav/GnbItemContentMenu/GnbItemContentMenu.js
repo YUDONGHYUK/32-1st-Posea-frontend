@@ -2,13 +2,20 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './GnbItemContentMenu.scss';
 
-const GnbItemContentMenu = ({ categoryTitle, list, title, link }) => {
+const GnbItemContentMenu = ({
+  categoryTitle,
+  list,
+  title,
+  link,
+  onGnbCloseButtonClick,
+}) => {
   const navigate = useNavigate();
 
   const goToMainCategory = () => {
     const queryString = `/products/list?main_category_id=${link}`;
 
     navigate(queryString);
+    onGnbCloseButtonClick();
   };
 
   return (

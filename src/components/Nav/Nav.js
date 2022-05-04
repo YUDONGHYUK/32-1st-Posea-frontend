@@ -72,6 +72,7 @@ const Nav = () => {
             <GnbItem
               key={navItem.id}
               onGnbButtonClick={onGnbButtonClick}
+              onGnbCloseButtonClick={onGnbCloseButtonClick}
               isClicked={lastClickedMenu === navItem.name}
               item={navItem}
             />
