@@ -2,13 +2,18 @@ import React, { useRef } from 'react';
 import MainCarouselItem from '../MainCarouselItem/MainCarouselItem';
 import './MainCarouselWrapper.scss';
 
-const IMG_WIDTH = 400;
+const IMG_WIDTH = 410;
 const IMG_COUNT = 7;
-const SHOWN_IMAGE_NUMBER = 3;
+const SHOWN_IMAGE_NUMBER = Math.floor((window.innerWidth - 80) / IMG_WIDTH);
 
 const MainCarouselWrapper = ({ itemList }) => {
   const itemListRef = useRef();
   const paginationBarRef = useRef();
+
+  paginationBarRef.current &&
+    (paginationBarRef.current.style.width = `${
+      100 / (IMG_COUNT - SHOWN_IMAGE_NUMBER)
+    }%`);
 
   const moveCarouselLeft = () => {
     const itemListRec = itemListRef.current.getBoundingClientRect();
