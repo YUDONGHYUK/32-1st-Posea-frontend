@@ -1,0 +1,21 @@
+.mainReleaseWrapper {
+  .mainRelease {
+    display: flex;
+    width: 100%;
+  }
+
+  .mainReleaseContent {
+    width: 475px;
+    height: 100%;
+    padding-right: 80px;
+  }
+
+  .mainReleaseImgBox {
+    flex-basis: auto;
+    padding-right: 120px;
+  }
+
+  .mainReleaseImg {
+    width: 100%;
+  }
+}

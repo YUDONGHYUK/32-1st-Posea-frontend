@@ -1,34 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import MainBannerWrapper from './MainBannerWrapper/MainBannerWrapper';
+import MainBlockquote from './MainBlockquote/MainBlockquote';
+import MainCarouselWrapper from './MainCarouselWrapper/MainCarouselWrapper';
+import MainHistoryWrapper from './MainHistoryWrapper/MainHistoryWrapper';
+import MainReleaseWrapper from './MainReleaseWrapper/MainReleaseWrapper';
+import './Main.scss';
 
 const Main = () => {
+  const [carouselData, setCarouselData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://10.58.0.92:8000/products')
+      .then(res => res.json())
+      .then(data => setCarouselData(data.result));
+  }, []);
+
   return (
-    <>
-      <img
-        alt="wow"
-        style={{ width: '100%' }}
-        src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-      />
-      <img
-        alt="wow"
-        style={{ width: '100%' }}
-        src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-      />
-      <img
-        alt="wow"
-        style={{ width: '100%' }}
-        src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-      />
-      <img
-        alt="wow"
-        style={{ width: '100%' }}
-        src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-      />
-      <img
-        alt="wow"
-        style={{ width: '100%' }}
-        src="https://images.ctfassets.net/u1nb1km7t5q7/4deARd4ivmZtU1VxNY7tsF/dbbef6e50700da136af888273a9f0185/Aesop_Fragrance_2022_Web_Homepage_Primary_Full_Bleed_Desktop_L_2880x1044px.jpg"
-      />
-    </>
+    <div className="main">
+      <MainBannerWrapper />
+      <MainCarouselWrapper itemList={carouselData.slice(0, 7)} />
+      <MainHistoryWrapper />
+      <MainReleaseWrapper />
+      <header className="mainTransitionHeader">탁월한 셀렉션</header>
+      <MainCarouselWrapper itemList={carouselData.slice(7, 14)} />
+      <MainBlockquote />
+    </div>
   );
 };
 
