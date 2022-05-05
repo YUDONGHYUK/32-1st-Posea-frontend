@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.arrowUp {
+  position: fixed;
+  bottom: 4%;
+  right: 3%;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  color: white;
+  background-color: #c4a891;
+  border-radius: 50%;
+  z-index: 2000;
+}

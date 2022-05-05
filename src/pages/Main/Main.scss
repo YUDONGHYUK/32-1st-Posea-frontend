@@ -2,9 +2,10 @@
 
 .main {
   background-color: $background;
-}
-.mainTransitionHeader {
-  font-size: 32px;
-  padding-top: 150px;
-  margin-left: 80px;
+
+  .mainTransitionHeader {
+    font-size: 32px;
+    padding-top: 150px;
+    margin-left: 80px;
+  }
 }

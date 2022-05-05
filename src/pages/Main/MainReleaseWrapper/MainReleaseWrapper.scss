@@ -11,8 +11,8 @@
   }
 
   .mainReleaseImgBox {
-    flex-basis: auto;
-    padding-right: 120px;
+    width: 65%;
+    padding-right: calc(100% / 15);
   }
 
   .mainReleaseImg {

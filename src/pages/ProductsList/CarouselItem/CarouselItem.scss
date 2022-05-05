@@ -24,4 +24,14 @@
     width: 290px;
     margin: 0 auto;
   }
+
+  .carouselItemTitle {
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: $secondary;
+  }
+
+  .carouselItemContent {
+    color: $tertiary;
+  }
 }

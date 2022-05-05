@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 14px;
+
+  .cartSummaryContainer {
+    width: 450px;
+    padding: 55px 0 20px 0;
+    color: $border;
+
+    .cartSummaryNotice {
+      display: block;
+      margin-bottom: 25px;
+    }
+
+    .cartSummaryItem {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+
+      .cartSummarySubtotal {
+        font-size: 24px;
+      }
+    }
+
+    .cartSummaryPayBtn {
+      width: 100%;
+      padding: 21px 23px;
+      color: black;
+      background-color: $background;
+      font-size: 14px;
+    }
+  }
+}
