@@ -11,7 +11,7 @@
     @include column-flexbox(flex-end);
 
     height: 100%;
-    padding: 40px 20px 80px;
+    padding: 40px 20px;
     transition: background-color 200ms ease-in-out;
 
     &:hover {
@@ -21,7 +21,7 @@
 
   .carouselItemImg {
     display: block;
-    width: 290px;
+    width: 100%;
     margin: 0 auto;
   }
 

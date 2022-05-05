@@ -26,7 +26,10 @@ const ProductsList = () => {
         />
 
         {productsData.map(category => (
-          <ProductsCarousel key={category.id} category={category} />
+          <ProductsCarousel
+            key={category.categories.category_id}
+            category={category}
+          />
         ))}
       </div>
     )
