@@ -4,14 +4,15 @@ import './CartItems.scss';
 
 const CartItems = ({ cartList, handleAmount, handleDelete }) => (
   <div className="cartItems">
-    {cartList.map(item => (
-      <CartItem
-        key={item.id}
-        item={item}
-        handleAmount={handleAmount}
-        handleDelete={handleDelete}
-      />
-    ))}
+    {cartList &&
+      cartList.map(item => (
+        <CartItem
+          key={item.cart_id}
+          item={item}
+          handleAmount={handleAmount}
+          handleDelete={handleDelete}
+        />
+      ))}
   </div>
 );
 

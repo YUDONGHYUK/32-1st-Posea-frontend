@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './Details.scss';
+import { useParams } from 'react-router-dom';
 import InfoRight from './InfoRight/InfoRight';
 import InfoUsage from './InfoUsage/InfoUsage';
 import Modal from './Modal/Modal';
 import Carousel from './Carousel/Carousel';
-import { useParams } from 'react-router-dom';
+import { API_OBJ } from '../../config';
+import './Details.scss';
 
 const Details = () => {
   const [productInfo, setProductInfo] = useState({});
@@ -14,10 +15,10 @@ const Details = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`http://10.58.0.92:8000/products/details/${params.id}`)
+    fetch(`${API_OBJ.PRODUCTS}/details/${params.id}`)
       .then(res => res.json())
       .then(data => setProductInfo(data.results[0]));
-  }, []);
+  }, [params.id]);
 
   document.body.style.overflow = isModalShow ? 'hidden' : 'unset';
 
@@ -38,7 +39,7 @@ const Details = () => {
   };
 
   const addCart = () => {
-    fetch('http://10.58.0.92:8000/carts', {
+    fetch(API_OBJ.CARTS, {
       method: 'POST',
       headers: { Authorization: localStorage.getItem('token') },
       body: JSON.stringify({
@@ -60,7 +61,7 @@ const Details = () => {
               src={productInfo.product_images}
             />
             <p id="explain">
-              이솝에서는 환경적 지속가능성을 고려하여 온라인과 매장에서의 별도
+              푀세아에서는 환경적 지속가능성을 고려하여 온라인과 매장에서의 별도
               펌프 제공을 지양하고 있습니다.
             </p>
           </div>

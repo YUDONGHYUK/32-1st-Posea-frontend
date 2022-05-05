@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import FormLayout from './FormLayout/FormLayout';
 import { RESPONSE_OBJECT, SIGNUP_MESSAGE } from './userMessage';
+import { API_OBJ } from '../../config';
 import './Login.scss';
 
 const Login = () => {
@@ -105,7 +106,7 @@ const Login = () => {
   };
 
   const checkEmail = () => {
-    fetch('http://10.58.0.92:8000/users/check', {
+    fetch(`${API_OBJ.USERS}/check`, {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -119,7 +120,7 @@ const Login = () => {
   };
 
   const postUserLogin = () => {
-    fetch('http://10.58.0.92:8000/users/login', {
+    fetch(`${API_OBJ.USERS}/login`, {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -137,7 +138,7 @@ const Login = () => {
   };
 
   const postUserSignUp = () => {
-    fetch('http://10.58.0.92:8000/users/signup', {
+    fetch(`${API_OBJ.USERS}/signup`, {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -169,28 +170,28 @@ const Login = () => {
 
     if (btnText === '계속') {
       if (!isValidEmail) {
-        setErrorMessage(SIGNUP_MESSAGE['invalidEmail']);
+        setErrorMessage(SIGNUP_MESSAGE.invalidEmail);
         return;
       }
       checkEmail();
     } else if (btnText === '로그인') {
       if (!isValidPassword) {
-        setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
+        setErrorMessage(SIGNUP_MESSAGE.invalidPassword);
         return;
       }
       postUserLogin();
     } else {
       if (!isValidPassword) {
-        setErrorMessage(SIGNUP_MESSAGE['invalidPassword']);
+        setErrorMessage(SIGNUP_MESSAGE.invalidPassword);
         return;
       } else if (password !== passwordCheck) {
-        setErrorMessage(SIGNUP_MESSAGE['samePassword']);
+        setErrorMessage(SIGNUP_MESSAGE.samePassword);
         return;
       } else if (!(checkBox && checkBoxTwo)) {
-        setErrorMessage(SIGNUP_MESSAGE['invalidCheckBox']);
+        setErrorMessage(SIGNUP_MESSAGE.invalidCheckBox);
         return;
       } else if (isInputEmpty) {
-        setErrorMessage(SIGNUP_MESSAGE['fullInput']);
+        setErrorMessage(SIGNUP_MESSAGE.fullInput);
         return;
       }
 

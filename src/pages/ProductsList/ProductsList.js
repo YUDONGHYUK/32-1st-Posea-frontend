@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProductsLnb from './ProductsLnb/ProductsLnb';
 import ProductsCarousel from './ProductsCarousel/ProductsCarousel';
+import { API_OBJ } from '../../config';
 import './ProductsList.scss';
 
 const ProductsList = () => {
@@ -10,7 +11,7 @@ const ProductsList = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://10.58.0.92:8000/products/list${location.search}`)
+    fetch(`${API_OBJ.PRODUCTS}/list${location.search}`)
       .then(res => res.json())
       .then(data => setProductsData(data.result));
   }, [location.search]);
