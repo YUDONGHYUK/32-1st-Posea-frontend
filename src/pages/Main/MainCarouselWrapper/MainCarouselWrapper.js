@@ -1,40 +1,44 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import MainCarouselItem from '../MainCarouselItem/MainCarouselItem';
 import './MainCarouselWrapper.scss';
 
-const IMG_WIDTH = 400;
 const IMG_COUNT = 7;
-const SHOWN_IMAGE_NUMBER = 3;
+const SHOWN_IMAGE_NUMBER = 4;
 
 const MainCarouselWrapper = ({ itemList }) => {
+  const [carouselCount, setCarouselCount] = useState(0);
   const itemListRef = useRef();
   const paginationBarRef = useRef();
 
   const moveCarouselLeft = () => {
-    const itemListRec = itemListRef.current.getBoundingClientRect();
-    const itemListX = itemListRec.x;
+    const nextCarouselCount = carouselCount - 1;
 
-    if (itemListX < 0) {
-      itemListRef.current.style.transform = `translateX(${
-        IMG_WIDTH * Math.floor(itemListX / IMG_WIDTH + 1)
-      }px)`;
-      paginationBarRef.current.style.transform = `translateX(${
-        -100 * Math.floor(itemListX / IMG_WIDTH + 1)
+    if (nextCarouselCount >= 0) {
+      itemListRef.current.style.transform = `translateX(-${
+        nextCarouselCount * (100 / IMG_COUNT)
       }%)`;
+
+      paginationBarRef.current.style.transform = `translateX(${
+        nextCarouselCount * 100
+      }%)`;
+
+      setCarouselCount(nextCarouselCount);
     }
   };
 
   const moveCarouselRight = () => {
-    const itemListRec = itemListRef.current.getBoundingClientRect();
-    const itemListX = itemListRec.x;
+    const nextCarouselCount = carouselCount + 1;
 
-    if (itemListX > -(IMG_WIDTH * (IMG_COUNT - SHOWN_IMAGE_NUMBER))) {
-      itemListRef.current.style.transform = `translateX(${
-        IMG_WIDTH * Math.ceil(itemListX / IMG_WIDTH - 1)
-      }px)`;
-      paginationBarRef.current.style.transform = `translateX(${
-        -100 * Math.ceil(itemListX / IMG_WIDTH - 1)
+    if (nextCarouselCount <= IMG_COUNT - SHOWN_IMAGE_NUMBER) {
+      itemListRef.current.style.transform = `translateX(-${
+        nextCarouselCount * (100 / 7)
       }%)`;
+
+      paginationBarRef.current.style.transform = `translateX(${
+        nextCarouselCount * 100
+      }%)`;
+
+      setCarouselCount(nextCarouselCount);
     }
   };
 
