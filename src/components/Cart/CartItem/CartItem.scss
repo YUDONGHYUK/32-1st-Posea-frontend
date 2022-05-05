@@ -1,0 +1,78 @@
+@import '../../../styles/variables.scss';
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid #3b3b3a;
+  color: $border;
+
+  .cartItemName {
+    width: 42%;
+  }
+
+  .cartItemSize {
+    width: 25%;
+  }
+
+  .cartItemAmountContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 33%;
+
+    .cartItemAmountLeft {
+      display: flex;
+
+      .cartItemAmountListContainer {
+        position: relative;
+      }
+      .cartItemAmountList {
+        position: absolute;
+
+        &.active {
+          z-index: 100;
+        }
+      }
+
+      .cartItemAmount {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: -9px;
+        width: 65px;
+        height: 38px;
+        padding: 0 16px;
+        border: 0.5px solid $border;
+        background-color: $secondary;
+
+        span:last-child {
+          font-size: 14px;
+        }
+
+        &:hover {
+          background-color: #333;
+          border: 1px solid white;
+          cursor: pointer;
+        }
+      }
+
+      .blankBox {
+        width: 65px;
+        height: 38px;
+      }
+
+      .cartItemAmountDelete {
+        margin-left: 12px;
+        color: $secondary;
+        font-size: 16px;
+        transition: color 250ms ease-in;
+
+        &:hover {
+          color: $border;
+        }
+      }
+    }
+  }
+}

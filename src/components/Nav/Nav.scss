@@ -95,6 +95,11 @@
       button {
         color: $background;
       }
+
+      .backBtn,
+      .modalExit {
+        color: $primary;
+      }
     }
 
     &.isOpen {
