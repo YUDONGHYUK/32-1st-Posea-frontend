@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import Main from '../../Main/Main';
+import { Link } from 'react-router-dom';
 
 const InfoTitle = ({ infoName, infoExplain }) => {
   return (

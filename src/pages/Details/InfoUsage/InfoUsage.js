@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import InfoUsageContent from '../InfoUsageContent/InfoUsageContent';
+import React from 'react';
 
 const InfoUsage = ({ productInfo: { usage, texture, scent } }) => {
   return (

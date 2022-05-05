@@ -4,7 +4,6 @@ import './Carousel.scss';
 const Carousel = ({ isViewMove }) => {
   const [slideState, setSlideState] = useState(0);
   const IMG_MAX = 3;
-  const IMG_WIDTH = 400;
   const slideRef = useRef();
 
   const handleRight = () => {
