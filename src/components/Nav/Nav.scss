@@ -113,6 +113,10 @@
 
     .gnbItems {
       @include flexbox(flex-start, flex-start);
+
+      .gnbItemsList {
+        @include flexbox(flex-start, flex-start);
+      }
     }
   }
 }
