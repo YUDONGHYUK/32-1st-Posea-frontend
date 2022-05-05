@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import GnbItem from './GnbItem/GnbItem';
 import Login from '../../pages/Login/Login';
 import './Nav.scss';
+import Cart from '../Cart/Cart';
 
 const Nav = () => {
   const [menuClicked, setMenuClicked] = useState({
@@ -11,6 +12,7 @@ const Nav = () => {
   const [navListData, setNavListData] = useState([]);
   const [scrollY, setScrollY] = useState(0);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
+  const [toggleModal, setToggleModal] = useState(false);
 
   useEffect(() => {
     fetch('/data/navListData.json')
@@ -61,6 +63,17 @@ const Nav = () => {
     return classNames.join(' ');
   };
 
+  const handleModal = e => {
+    if (toggleModal && e.target === e.currentTarget) {
+      setToggleModal(false);
+      document.body.style.overflow = 'unset';
+    }
+    if (!toggleModal && e.target === e.currentTarget) {
+      setToggleModal(true);
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
   return (
     <nav className="gnb">
       <Link to="/">
@@ -76,16 +89,18 @@ const Nav = () => {
 
       <ul className={checkGnbListClassNames()}>
         <li className="gnbItems">
-          {navListData &&
-            navListData.map(navItem => (
-              <GnbItem
-                key={navItem.id}
-                onGnbButtonClick={onGnbButtonClick}
-                onGnbCloseButtonClick={onGnbCloseButtonClick}
-                isClicked={lastClickedMenu === navItem.name}
-                item={navItem}
-              />
-            ))}
+          <ul className="gnbItemsList">
+            {navListData &&
+              navListData.map(navItem => (
+                <GnbItem
+                  key={navItem.id}
+                  onGnbButtonClick={onGnbButtonClick}
+                  onGnbCloseButtonClick={onGnbCloseButtonClick}
+                  isClicked={lastClickedMenu === navItem.name}
+                  item={navItem}
+                />
+              ))}
+          </ul>
 
           {lastClickedMenu && (
             <li className="gnbItem">
@@ -100,8 +115,16 @@ const Nav = () => {
           )}
         </li>
 
-        <li className="gnbItem">
-          <Login />
+        <li className="gnbItems">
+          <ul className="gnbItemsList">
+            <li className="gnbItem">
+              <Login />
+            </li>
+            <li className="gnbItem">
+              <button onClick={handleModal}>카트</button>
+              <Cart toggleModal={toggleModal} handleModal={handleModal} />
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>

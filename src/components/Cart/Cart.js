@@ -5,9 +5,8 @@ import CartSummary from './CartSummary/CartSummary';
 import { CART_ITEMS } from './CART_ITEMS';
 import './Cart.scss';
 
-const Cart = () => {
+const Cart = ({ toggleModal, handleModal }) => {
   const [cartList, setCartList] = useState(CART_ITEMS);
-  const [toggleModal, setToggleModal] = useState(false);
 
   const totalPrice = cartList
     .map(item => item.price)
@@ -33,39 +32,23 @@ const Cart = () => {
     setCartList(deletedLIst);
   };
 
-  const handleModal = e => {
-    if (toggleModal && e.target === e.currentTarget) {
-      setToggleModal(false);
-      document.body.style.overflow = 'unset';
-    }
-    if (!toggleModal && e.target === e.currentTarget) {
-      setToggleModal(true);
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
   return (
-    <>
-      <div
-        className={`modal ${toggleModal ? 'active' : ''}`}
-        onClick={handleModal}
-      >
-        <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
-          <div className="cartContainer">
-            <CartItemHeader handleModal={handleModal} />
-            <CartItems
-              cartList={cartList}
-              handleAmount={handleAmount}
-              handleDelete={handleDelete}
-            />
-          </div>
-          <CartSummary totalPrice={totalPrice} />
-        </section>
-      </div>
-      <button className="modalBtn" onClick={handleModal}>
-        ddd
-      </button>
-    </>
+    <div
+      className={`modal ${toggleModal ? 'active' : ''}`}
+      onClick={handleModal}
+    >
+      <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
+        <div className="cartContainer">
+          <CartItemHeader handleModal={handleModal} />
+          <CartItems
+            cartList={cartList}
+            handleAmount={handleAmount}
+            handleDelete={handleDelete}
+          />
+        </div>
+        <CartSummary totalPrice={totalPrice} />
+      </section>
+    </div>
   );
 };
 
