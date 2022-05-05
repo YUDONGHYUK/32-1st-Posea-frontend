@@ -3,7 +3,7 @@ import './CartItem.scss';
 
 const CartItem = ({
   item,
-  item: { name, size, amount, price },
+  item: { product_name, size, count, totalPrice },
   handleAmount,
   handleDelete,
 }) => {
@@ -12,14 +12,13 @@ const CartItem = ({
   const onDelete = () => handleDelete(item);
   const spreadAmount = e => {
     spreadAmountBtn && handleAmount(item, e);
-
     setSpreadAmountBtn(!spreadAmountBtn);
   };
 
   return (
     <div className="cartItem">
-      <span className="cartItemName">{name}</span>
-      <span className="cartItemSize">{size}</span>
+      <span className="cartItemName">{product_name}</span>
+      <span className="cartItemSize">{size}mL</span>
       <div className="cartItemAmountContainer">
         <div className="cartItemAmountLeft">
           <div className="cartItemAmountListContainer">
@@ -30,7 +29,7 @@ const CartItem = ({
             >
               {!spreadAmountBtn && (
                 <li className="cartItemAmount" onClick={spreadAmount}>
-                  <span>{amount}</span>
+                  <span>{count}</span>
                   <span>▿</span>
                 </li>
               )}
@@ -61,7 +60,9 @@ const CartItem = ({
           </button>
         </div>
 
-        <span className="cartItemAmountTotal">{price.toLocaleString()}</span>
+        <span className="cartItemAmountTotal">
+          {totalPrice.toLocaleString()}
+        </span>
       </div>
     </div>
   );

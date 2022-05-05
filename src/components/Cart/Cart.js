@@ -1,35 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItemHeader from './CartItemHeader/CartItemHeader';
 import CartItems from './CartItems/CartItems';
 import CartSummary from './CartSummary/CartSummary';
-import { CART_ITEMS } from './CART_ITEMS';
+import { API_OBJ } from '../../config';
 import './Cart.scss';
 
-const Cart = ({ toggleModal, handleModal }) => {
-  const [cartList, setCartList] = useState(CART_ITEMS);
+const Cart = ({ toggleModal, handleModal, isAddCartItem }) => {
+  const [cartList, setCartList] = useState(null);
+  const totalCartPrice =
+    cartList &&
+    cartList
+      .map(item => Number(item.totalPrice))
+      .reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0);
 
-  const totalPrice = cartList
-    .map(item => item.price)
-    .reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0);
+  useEffect(() => {
+    fetch(API_OBJ.CARTS, {
+      method: 'GET',
+      headers: { Authorization: localStorage.getItem('token') },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCartList(data.result);
+      });
+  }, [isAddCartItem]);
 
   const handleAmount = (item, e) => {
-    const newCartList = cartList.map(prevItem => {
-      if (prevItem.id === item.id) {
-        return {
-          ...item,
-          amount: Number(e.target.innerText),
-          price:
-            (prevItem.price / prevItem.amount) * Number(e.target.innerText),
-        };
-      }
-      return prevItem;
-    });
-    setCartList(newCartList);
+    fetch(`${API_OBJ.CARTS}/cart/${parseInt(item.cart_id)}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        count: parseInt(e.target.innerHTML),
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'COUNT_CHANGED') {
+          fetch(API_OBJ.CARTS, {
+            method: 'GET',
+            headers: { Authorization: localStorage.getItem('token') },
+          })
+            .then(res => res.json())
+            .then(data => setCartList(data.result));
+        }
+      });
   };
 
   const handleDelete = item => {
-    const deletedLIst = cartList.filter(prevItem => prevItem.id !== item.id);
-    setCartList(deletedLIst);
+    fetch(`${API_OBJ.CARTS}?cart_ids=${parseInt(item.cart_id)}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'CART_DELETED') {
+          fetch(API_OBJ.CARTS, {
+            method: 'GET',
+            headers: { Authorization: localStorage.getItem('token') },
+          })
+            .then(res => res.json())
+            .then(data => setCartList(data.result));
+        }
+      });
   };
 
   return (
@@ -46,7 +81,7 @@ const Cart = ({ toggleModal, handleModal }) => {
             handleDelete={handleDelete}
           />
         </div>
-        <CartSummary totalPrice={totalPrice} />
+        <CartSummary totalCartPrice={totalCartPrice} />
       </section>
     </div>
   );

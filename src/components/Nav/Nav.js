@@ -13,6 +13,7 @@ const Nav = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [toggleModal, setToggleModal] = useState(false);
+  const [isAddCartItem, setIsAddCartItem] = useState(false);
 
   useEffect(() => {
     fetch('/data/navListData.json')
@@ -21,7 +22,6 @@ const Nav = () => {
         setNavListData(data);
       });
   }, []);
-
   const { lastClickedMenu } = menuClicked;
 
   const detectScrollDirection = e => {
@@ -64,6 +64,8 @@ const Nav = () => {
   };
 
   const handleModal = e => {
+    setIsAddCartItem(prev => !prev);
+
     if (toggleModal && e.target === e.currentTarget) {
       setToggleModal(false);
       document.body.style.overflow = 'unset';
@@ -121,8 +123,15 @@ const Nav = () => {
               <Login />
             </li>
             <li className="gnbItem">
-              <button onClick={handleModal}>카트</button>
-              <Cart toggleModal={toggleModal} handleModal={handleModal} />
+              <button onClick={handleModal}>
+                카트
+                {/* {!cartCount && cartCount} */}
+              </button>
+              <Cart
+                toggleModal={toggleModal}
+                handleModal={handleModal}
+                isAddCartItem={isAddCartItem}
+              />
             </li>
           </ul>
         </li>

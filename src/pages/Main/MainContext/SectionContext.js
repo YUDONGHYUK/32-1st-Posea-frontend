@@ -11,7 +11,7 @@ const MainContext = () => (
       몸과 마음에 머무는 아로마
     </span>
     <p className="sectionContextParagraph">
-      자아와 감각을 깨우는 아로마의 이솝 오 드 퍼퓸은 조향에 대한 일반적인
+      자아와 감각을 깨우는 아로마의 푀세아 오 드 퍼퓸은 조향에 대한 일반적인
       관행을 따르지 않는 미묘한 차이의 접근법으로 만들어집니다.
     </p>
     <Link to="/">
