@@ -8,7 +8,7 @@ const ArrowUp = () => {
 
   return (
     <button className="arrowUp" onClick={scrollTop}>
-      <i class="fa-solid fa-arrow-up" />
+      <i className="fa-solid fa-arrow-up" />
     </button>
   );
 };
