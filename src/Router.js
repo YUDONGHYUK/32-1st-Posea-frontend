@@ -6,10 +6,12 @@ import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Details from './pages/Details/Details';
 import ArrowUp from './components/ArrowUp/ArrowUp';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
