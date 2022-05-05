@@ -59,24 +59,34 @@ const Login = () => {
     }
   };
 
-  const resetState = (modal, server, error) => {
+  const resetState = (modal, server, error, user) => {
     modal && setOpenModalBtn(false);
     server && setServerMessage('initial');
     error && setErrorMessage('');
+    user &&
+      setUserInfo({
+        email: '',
+        password: '',
+        passwordCheck: '',
+        lastName: '',
+        firstName: '',
+        checkBox: false,
+        checkBoxTwo: false,
+      });
   };
 
   const exitBtnClick = () => {
-    resetState(true, true, false);
+    resetState(true, true, false, true);
   };
 
   const outModalBtnClick = e => {
     if (outModal.current === e.target) {
-      resetState(true, true, true);
+      resetState(true, true, true, true);
     }
   };
 
   const onBackBtnClick = () => {
-    resetState(false, true, true);
+    resetState(false, true, true, true);
   };
 
   const openModal = () => {
