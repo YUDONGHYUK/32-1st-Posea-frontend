@@ -1,0 +1,33 @@
+@import '../../../styles/variables.scss';
+
+.cartItemsHeader {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 2px solid #3b3b3a;
+  color: $border;
+  font-size: 14px;
+
+  .itemHeaderCart {
+    width: 42%;
+  }
+
+  .itemHeaderSize {
+    width: 25%;
+  }
+
+  .itemHeaderAmountBox {
+    display: flex;
+    justify-content: space-between;
+    width: 33%;
+
+    button {
+      color: $border;
+      font-size: 24px;
+      transition: color 250ms ease-in;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
