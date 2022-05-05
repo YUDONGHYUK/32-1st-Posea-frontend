@@ -20,8 +20,8 @@ const CarouselItem = ({ product }) => {
           src={product_images}
           className="carouselItemImg"
         />
-        <h4>{product_name}</h4>
-        <div>
+        <h4 className="carouselItemTitle">{product_name}</h4>
+        <div className="carouselItemContent">
           <span>
             {product_size.length > 1 && `${product_size.length} 사이즈 / `}
           </span>
