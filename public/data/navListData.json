@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "title": "스킨 케어",
+    "className": "navSkin",
+    "name": "skinCare",
+    "list": [
+      {
+        "id": 1,
+        "title": "카테고리",
+        "list": [
+          {
+            "id": 1,
+            "title": "클렌저"
+          },
+          {
+            "id": 2,
+            "title": "각질 제거"
+          },
+          {
+            "id": 3,
+            "title": "트리트먼트 & 마스크"
+          },
+          {
+            "id": 4,
+            "title": "토너"
+          },
+          {
+            "id": 5,
+            "title": "하이드레이터"
+          },
+          {
+            "id": 6,
+            "title": "립 & 아이"
+          },
+          {
+            "id": 7,
+            "title": "쉐이빙"
+          },
+          {
+            "id": 8,
+            "title": "선 케어"
+          }
+        ]
+      }
+    ],
+    "imgSrc": "/images/navSkinCare.jpg"
+  },
+  {
+    "id": 2,
+    "title": "바디 & 핸드",
+    "className": "navBody",
+    "name": "bodyHand",
+    "list": [
+      {
+        "id": 1,
+        "title": "카테고리",
+        "list": [
+          {
+            "id": 1,
+            "title": "핸드"
+          },
+          {
+            "id": 2,
+            "title": "바디"
+          },
+          {
+            "id": 3,
+            "title": "퍼스널 케어"
+          }
+        ]
+      }
+    ],
+    "imgSrc": "/images/navBodyHand.jpg"
+  },
+  {
+    "id": 3,
+    "title": "헤어",
+    "className": "navHair",
+    "name": "hair",
+    "list": [
+      {
+        "id": 1,
+        "title": "카테고리",
+        "list": [
+          {
+            "id": 1,
+            "title": "샴푸"
+          },
+          {
+            "id": 2,
+            "title": "컨디셔너"
+          },
+          {
+            "id": 3,
+            "title": "트리트먼트"
+          },
+          {
+            "id": 4,
+            "title": "그루밍"
+          }
+        ]
+      }
+    ],
+    "imgSrc": "/images/navHair.jpg"
+  },
+  {
+    "id": 4,
+    "title": "향수",
+    "className": "navPerfume",
+    "name": "perfume",
+    "list": [
+      {
+        "id": 1,
+        "title": "카테고리",
+        "list": [
+          {
+            "id": 1,
+            "title": "미라세티"
+          },
+          {
+            "id": 2,
+            "title": "카르스트"
+          },
+          {
+            "id": 3,
+            "title": "에레미아"
+          },
+          {
+            "id": 4,
+            "title": "로즈"
+          },
+          {
+            "id": 5,
+            "title": "휠"
+          },
+          {
+            "id": 6,
+            "title": "마라케시"
+          },
+          {
+            "id": 7,
+            "title": "테싯"
+          }
+        ]
+      }
+    ],
+    "imgSrc": "/images/navSkinCare.jpg"
+  },
+  {
+    "id": 5,
+    "title": "홈",
+    "className": "navHome",
+    "name": "home",
+    "list": [
+      {
+        "id": 1,
+        "title": "카테고리",
+        "list": []
+      }
+    ],
+    "imgSrc": "/images/navBodyHand.jpg"
+  }
+]

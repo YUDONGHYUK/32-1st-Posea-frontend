@@ -1,0 +1,54 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.modalBox {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: $primary;
+
+  .modalTitle {
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    color: $primary;
+  }
+
+  .modalParagraph {
+    margin-bottom: 30px;
+    font-size: 17px;
+    opacity: 0.4;
+  }
+
+  .modalErrorMsg {
+    color: #ea6956;
+  }
+
+  .modalInput {
+    width: 450px;
+    height: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    background-color: $background;
+    border-style: none;
+    border-bottom: 1px solid $border;
+  }
+
+  .continueBtn {
+    width: 450px;
+    height: 60px;
+    margin-top: 10px;
+    background-color: $secondary;
+    font-size: 17px;
+    color: $background;
+  }
+}
+.backBtn {
+  font-size: 18px;
+  position: absolute;
+  left: 7%;
+  top: 5%;
+  color: $primary;
+  opacity: 0.7;
+}
