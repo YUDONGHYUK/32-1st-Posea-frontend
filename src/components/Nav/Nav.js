@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import GnbItem from './GnbItem/GnbItem';
 import Login from '../../pages/Login/Login';
 import './Nav.scss';
@@ -14,6 +14,7 @@ const Nav = () => {
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [toggleModal, setToggleModal] = useState(false);
   const [isAddCartItem, setIsAddCartItem] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     fetch('/data/navListData.json')
@@ -22,6 +23,12 @@ const Nav = () => {
         setNavListData(data);
       });
   }, []);
+
+  useEffect(() => {
+    setIsScrollingUp(true);
+    setScrollY(0);
+  }, [pathname]);
+
   const { lastClickedMenu } = menuClicked;
 
   const detectScrollDirection = e => {

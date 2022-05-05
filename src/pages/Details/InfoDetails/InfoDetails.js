@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import InfoDetailsContent from '../InfoDetailsContent/InfoDetailsContent';
 
 const InfoDetails = ({ productInfo, onModalShowBtnClick, addCart }) => {
@@ -7,22 +7,22 @@ const InfoDetails = ({ productInfo, onModalShowBtnClick, addCart }) => {
   return (
     <div className="information productInfo">
       <InfoDetailsContent
-        title={'피부 타입'}
+        title="피부 타입"
         desc={skintype && skintype.join(', ')}
         onModalShowBtnClick={onModalShowBtnClick}
       />
       <InfoDetailsContent
-        title={'사용감'}
+        title="사용감"
         desc={sense}
         onModalShowBtnClick={onModalShowBtnClick}
       />
       <InfoDetailsContent
-        title={'주요성분'}
+        title="주요성분"
         desc={ingredient_name}
         onModalShowBtnClick={onModalShowBtnClick}
       />
       <InfoDetailsContent
-        title={'사이즈'}
+        title="사이즈"
         desc={size && size.map(el => el + 'mL').join(', ')}
         onModalShowBtnClick={onModalShowBtnClick}
       />

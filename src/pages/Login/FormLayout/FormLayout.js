@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Checkboxes from '../Checkboxes/Checkboxes';
 import './FormLayout.scss';
 
