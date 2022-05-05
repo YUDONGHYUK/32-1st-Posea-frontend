@@ -37,6 +37,18 @@ const Details = () => {
     setIsViewMove(true);
   };
 
+  const addCart = () => {
+    fetch('http://10.58.0.92:8000/carts', {
+      method: 'POST',
+      headers: { Authorization: localStorage.getItem('token') },
+      body: JSON.stringify({
+        product_id: params.id,
+        size: productInfo.size[0],
+        price: parseInt(productInfo.price[0]),
+      }),
+    });
+  };
+
   return (
     <>
       <div className="page">
@@ -56,6 +68,7 @@ const Details = () => {
           <InfoRight
             productInfo={productInfo}
             onModalShowBtnClick={onModalShowBtnClick}
+            addCart={addCart}
           />
         </div>
 

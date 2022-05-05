@@ -2,7 +2,7 @@ import React from 'react';
 import InfoTitle from '../InfoTitle/InfoTitle';
 import InfoDetails from '../InfoDetails/InfoDetails';
 
-const InfoRight = ({ productInfo, onModalShowBtnClick }) => {
+const InfoRight = ({ productInfo, onModalShowBtnClick, addCart }) => {
   const { name, detail } = productInfo;
 
   return (
@@ -12,6 +12,7 @@ const InfoRight = ({ productInfo, onModalShowBtnClick }) => {
       <InfoDetails
         productInfo={productInfo}
         onModalShowBtnClick={onModalShowBtnClick}
+        addCart={addCart}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InfoDetailsContent from '../InfoDetailsContent/InfoDetailsContent';
 
-const InfoDetails = ({ productInfo, onModalShowBtnClick }) => {
+const InfoDetails = ({ productInfo, onModalShowBtnClick, addCart }) => {
   const { skintype, sense, ingredient_name, size, price } = productInfo;
 
   return (
@@ -27,7 +27,7 @@ const InfoDetails = ({ productInfo, onModalShowBtnClick }) => {
         onModalShowBtnClick={onModalShowBtnClick}
       />
 
-      <button className="btn">
+      <button onClick={addCart} className="btn">
         카트에 추가하기 -{' '}
         <span>₩{price && parseInt(price[0]).toLocaleString()}</span>
       </button>
