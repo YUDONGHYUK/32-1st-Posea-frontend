@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartItem.scss';
 
 const CartItem = ({
@@ -7,8 +7,14 @@ const CartItem = ({
   handleAmount,
   handleDelete,
 }) => {
-  const onAmountChanger = e => handleAmount(item, e);
+  const [spreadAmountBtn, setSpreadAmountBtn] = useState(false);
+
   const onDelete = () => handleDelete(item);
+  const spreadAmount = e => {
+    spreadAmountBtn && handleAmount(item, e);
+
+    setSpreadAmountBtn(!spreadAmountBtn);
+  };
 
   return (
     <div className="cartItem">
@@ -16,21 +22,45 @@ const CartItem = ({
       <span className="cartItemSize">{size}</span>
       <div className="cartItemAmountContainer">
         <div className="cartItemAmountLeft">
-          <select
-            className="cartItemAmountInput"
-            value={amount}
-            onChange={onAmountChanger}
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <div className="cartItemAmountListContainer">
+            <ul
+              className={`cartItemAmountList ${
+                spreadAmountBtn ? 'active' : ''
+              }`}
+            >
+              {!spreadAmountBtn && (
+                <li className="cartItemAmount" onClick={spreadAmount}>
+                  <span>{amount}</span>
+                  <span>▿</span>
+                </li>
+              )}
+              {spreadAmountBtn && (
+                <>
+                  <li className="cartItemAmount" onClick={spreadAmount}>
+                    1
+                  </li>
+                  <li className="cartItemAmount" onClick={spreadAmount}>
+                    2
+                  </li>
+                  <li className="cartItemAmount" onClick={spreadAmount}>
+                    3
+                  </li>
+                  <li className="cartItemAmount" onClick={spreadAmount}>
+                    4
+                  </li>
+                  <li className="cartItemAmount" onClick={spreadAmount}>
+                    5
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+          <div className="blankBox" />
           <button className="cartItemAmountDelete" onClick={onDelete}>
             삭제
           </button>
         </div>
+
         <span className="cartItemAmountTotal">{price.toLocaleString()}</span>
       </div>
     </div>

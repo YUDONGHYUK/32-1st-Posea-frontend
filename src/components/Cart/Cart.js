@@ -18,8 +18,9 @@ const Cart = () => {
       if (prevItem.id === item.id) {
         return {
           ...item,
-          amount: e.target.value,
-          price: (prevItem.price / prevItem.amount) * e.target.value,
+          amount: Number(e.target.innerText),
+          price:
+            (prevItem.price / prevItem.amount) * Number(e.target.innerText),
         };
       }
       return prevItem;
@@ -44,22 +45,27 @@ const Cart = () => {
   };
 
   return (
-    <div
-      className={`modal ${toggleModal ? 'active' : ''}`}
-      onClick={handleModal}
-    >
-      <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
-        <div className="cartContainer">
-          <CartItemHeader handleModal={handleModal} />
-          <CartItems
-            cartList={cartList}
-            handleAmount={handleAmount}
-            handleDelete={handleDelete}
-          />
-        </div>
-        <CartSummary totalPrice={totalPrice} />
-      </section>
-    </div>
+    <>
+      <div
+        className={`modal ${toggleModal ? 'active' : ''}`}
+        onClick={handleModal}
+      >
+        <section className={`cartWrapper ${toggleModal ? 'active' : ''}`}>
+          <div className="cartContainer">
+            <CartItemHeader handleModal={handleModal} />
+            <CartItems
+              cartList={cartList}
+              handleAmount={handleAmount}
+              handleDelete={handleDelete}
+            />
+          </div>
+          <CartSummary totalPrice={totalPrice} />
+        </section>
+      </div>
+      <button className="modalBtn" onClick={handleModal}>
+        ddd
+      </button>
+    </>
   );
 };
 
