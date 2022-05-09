@@ -31,6 +31,7 @@
 ### Back-End 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![MYSQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
 ### Common
 <!-- ![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white) -->
@@ -48,7 +49,6 @@
 - Main
 
 ![main2](https://user-images.githubusercontent.com/91944649/167325496-447851da-0d2d-4c6e-baab-98e5a674fa24.gif)
-
 
 - Login & Sign-Up
 
