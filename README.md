@@ -25,6 +25,12 @@
 ### 구현 기능
 
 #### 공통
+- Nav
+
+![nav](https://user-images.githubusercontent.com/91944649/167323476-463c1465-12c4-4ac6-8f7b-4dc5b59385fb.gif)
+
+
+
 
 - 일반 회원가입 / 로그인
 - Nav, Footer
